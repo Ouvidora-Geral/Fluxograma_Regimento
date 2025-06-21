@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>FLUXOS DA OUVIDORIA</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            background-color: #f5f5f5;
+            color: #333;
+            -webkit-text-size-adjust: 100%;
+        }
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .header:hover {
+            background-color: #34495e;
+        }
+        .etapa {
+            padding: 15px;
+            margin-bottom: 5px;
+            transition: all 0.3s;
+        }
+        .etapa-title {
+            font-weight: bold;
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .toggle-icon {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .metodo-title {
+            font-weight: bold;
+            text-align: center;
+            font-size: 16px;
+            margin: 12px 0;
+            background-color: rgba(255,255,255,0.3);
+            padding: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .step {
+            margin-bottom: 12px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: rgba(255,255,255,0.7);
+            transition: all 0.3s;
+        }
+        .step:hover {
+            transform: translateX(3px);
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+        .step-title {
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+        .initial {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+        .flow-arrow {
+            text-align: center;
+            margin: 12px 0;
+            position: relative;
+        }
+        .flow-arrow::before {
+            content: "➔";
+            display: block;
+            font-size: 24px;
+            color: #2c3e50;
+            font-weight: bold;
+            transform: rotate(90deg);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+        .etapa-1 {
+            background-color: #d4e6f1;
+        }
+        .etapa-1 .etapa-title {
+            color: #2980b9;
+            border-bottom-color: #2980b9;
+        }
+        .etapa-2 {
+            background-color: #fdebd0;
+        }
+        .etapa-2 .etapa-title {
+            color: #e67e22;
+            border-bottom-color: #e67e22;
+        }
+        .etapa-3 {
+            background-color: #d5f5e3;
+        }
+        .etapa-3 .etapa-title {
+            color: #27ae60;
+            border-bottom-color: #27ae60;
+        }
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 10px;
+            background-color: #ecf0f1;
+            gap: 5px;
+        }
+        .nav-btn {
+            padding: 8px 12px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+            flex: 1 1 auto;
+            min-width: 120px;
+            max-width: 45%;
+        }
+        .nav-btn:hover {
+            background-color: #2980b9;
+        }
+        .hidden {
+            display: none;
+        }
+        .progress-bar {
+            width: 100%;
+            background-color: #ecf0f1;
+            height: 8px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #2980b9, #e67e22, #27ae60);
+            width: 0%;
+            transition: width 0.5s;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 280px;
+            background-color: #2c3e50;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px;
+            position: absolute;
+            z-index: 100;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 14px;
+            font-weight: normal;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        .etapa-link {
+            color: #2c3e50;
+            text-decoration: underline;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: block;
+            margin-top: 8px;
+            font-size: 14px;
+        }
+        .etapa-link:hover {
+            color: #e74c3c;
+        }
+
+        /* Estilos do Quiz */
+        .quiz-section {
+            padding: 15px;
+            background-color: #f8f9fa;
+            margin: 15px 0;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        .quiz-title {
+            text-align: center;
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        .difficulty-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .difficulty-btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .easy-btn {
+            background-color: #27ae60;
+            color: white;
+        }
+        .medium-btn {
+            background-color: #f39c12;
+            color: white;
+        }
+        .hard-btn {
+            background-color: #e74c3c;
+            color: white;
+        }
+        .difficulty-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        .quiz-container {
+            display: none;
+        }
+        .question {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .question-text {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .options {
+            display: grid;
+            gap: 10px;
+        }
+        .option {
+            padding: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .option:hover {
+            background-color: #d6eaf8;
+        }
+        .option.selected {
+            background-color: #3498db;
+            color: white;
+        }
+        .option.correct {
+            background-color: #2ecc71;
+            color: white;
+        }
+        .option.incorrect {
+            background-color: #e74c3c;
+            color: white;
+        }
+        .quiz-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+        .quiz-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .quiz-btn:hover {
+            background-color: #2980b9;
+        }
+        .quiz-btn:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+        .result-container {
+            text-align: center;
+            padding: 20px;
+            display: none;
+        }
+        .result-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .score {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .feedback {
+            margin-bottom: 15px;
+        }
+        .restart-btn {
+            padding: 10px 20px;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .restart-btn:hover {
+            background-color: #27ae60;
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                font-size: 18px;
+                padding: 12px;
+            }
+            .etapa-title {
+                font-size: 16px;
+            }
+            .metodo-title {
+                font-size: 15px;
+            }
+            .step {
+                padding: 8px;
+                font-size: 14px;
+            }
+            .nav-btn {
+                padding: 6px 8px;
+                font-size: 13px;
+                min-width: 100px;
+            }
+            .tooltip .tooltiptext {
+                width: 240px;
+                font-size: 13px;
+            }
+            .difficulty-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .difficulty-btn {
+                width: 100%;
+                max-width: 200px;
+            }
+            .options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header" id="main-header">
+            FLUXOS E ROTINAS DIÁRIAS DA OUVIDORIA
+            <span class="toggle-icon">▼</span>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn" onclick="showEtapa(1)">1ª Etapa</button>
+            <button class="nav-btn" onclick="showEtapa(2)">2ª Etapa</button>
+            <button class="nav-btn" onclick="showEtapa(3)">3ª Etapa</button>
+            <button class="nav-btn" onclick="showQuizSection()">Quiz</button>
+        </div>
+
+        <!-- Seção do Quiz -->
+        <div class="quiz-section" id="quiz-section" style="display: none;">
+            <h2 class="quiz-title">Quiz da Ouvidoria</h2>
+            <div class="difficulty-buttons">
+                <button class="difficulty-btn easy-btn" onclick="startQuiz('easy')">Fácil</button>
+                <button class="difficulty-btn medium-btn" onclick="startQuiz('medium')">Médio</button>
+                <button class="difficulty-btn hard-btn" onclick="startQuiz('hard')">Difícil</button>
+            </div>
+
+            <div id="easy-quiz" class="quiz-container">
+                <!-- Perguntas fáceis serão inseridas aqui pelo JavaScript -->
+            </div>
+
+            <div id="medium-quiz" class="quiz-container">
+                <!-- Perguntas médias serão inseridas aqui pelo JavaScript -->
+            </div>
+
+            <div id="hard-quiz" class="quiz-container">
+                <!-- Perguntas difíceis serão inseridas aqui pelo JavaScript -->
+            </div>
+
+            <div class="quiz-nav">
+                <button id="prev-btn" class="quiz-btn" onclick="prevQuestion()" disabled>Anterior</button>
+                <span id="question-counter">Pergunta 1/4</span>
+                <button id="next-btn" class="quiz-btn" onclick="nextQuestion()">Próxima</button>
+            </div>
+
+            <div id="quiz-result" class="result-container">
+                <h3 class="result-title">Resultado do Quiz</h3>
+                <div class="score">Pontuação: <span id="final-score">0</span>/4</div>
+                <div class="feedback" id="feedback"></div>
+                <button class="restart-btn" onclick="restartQuiz()">Fazer Novamente</button>
+            </div>
+        </div>
+
+        <!-- 1ª ETAPA -->
+        <div class="etapa etapa-1" id="etapa-1">
+            <div class="etapa-title" onclick="toggleEtapa(1)">
+                1ª ETAPA: Organização da Rotina Diária – Método DIA
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="content">
+                <div class="step">
+                    <div class="step-title">Esta etapa é crucial para a triagem inicial das manifestações, categorizando-as e priorizando as ações.</div>
+                </div>
+
+                <div class="flow-arrow tooltip" title="Fluxo para início do expediente"></div>
+
+                <div class="step">
+                    <div class="step-title">Início do Expediente:</div>
+                </div>
+
+                <div class="metodo-title" onclick="toggleMethod('dia')">
+                    DIA: Macroestrutura da Jornada de Atendimento
+                    <span class="toggle-icon">▼</span>
+                </div>
+
+                <div id="dia-method">
+                    <div class="step">
+                        <div class="step-title"><span class="initial">D</span> – Denúncias:</div>
+                        Identificar e separar manifestações que relatam irregularidades.
+                        <div class="flow-arrow tooltip" title="Fluxo para classificação de denúncias"></div>
+                        <div class="etapa-link" onclick="showEtapa(2)">(Para Denúncias) Seguir para a 2ª ETAPA – Classificação das Denúncias (Método JALECO)</div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title"><span class="initial">I</span> – Informações:</div>
+                        Levantar e atualizar atos normativos e legislações vigentes.
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title"><span class="initial">A</span> – Acompanhamento:</div>
+                        Monitorar continuamente as manifestações em aberto (tramitando, encaminhadas, respondidas e registradas no SEI).
+                    </div>
+
+                    <div class="flow-arrow tooltip" title="Fim da triagem diária"></div>
+
+                    <div class="step">
+                        <div class="step-title">Fim da Triagem Diária</div>
+                        <div>(Para Assuntos de Rotina)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2ª ETAPA -->
+        <div class="etapa etapa-2" id="etapa-2">
+            <div class="etapa-title" onclick="toggleEtapa(2)">
+                2ª ETAPA: Classificação das Denúncias – Método JALECO
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="content">
+                <div class="step">
+                    <div class="step-title">Após a triagem inicial das denúncias, o método JALECO permite uma classificação estratégica para direcionar o tratamento especializado.</div>
+                </div>
+
+                <div class="flow-arrow tooltip" title="Início da classificação"></div>
+
+                <div class="step">
+                    <div class="step-title">Início da Classificação de Denúncias</div>
+                </div>
+
+                <div class="metodo-title" onclick="toggleMethod('jaleco')">
+                    JALECO: Classificação Estratégica das Denúncias
+                    <span class="toggle-icon">▼</span>
+                </div>
+
+                <div id="jaleco-method">
+                    <div class="step">
+                        <div class="step-title"><span class="initial">J</span> – Judiciais/Jurídicas:</div>
+                        Classificar denúncias relacionadas a questões legais e jurídicas.
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title"><span class="initial">A</span> – Assédio (moral ou sexual):</div>
+                        Classificar denúncias de assédio.
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title"><span class="initial">L</span> – Legislações (infringência normativa):</div>
+                        Classificar denúncias de violação de normas e leis.
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title"><span class="initial">E</span> – Éticas (conduta profissional):</div>
+                        Classificar denúncias sobre conduta profissional.
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title"><span class="initial">C</span> – Conselhos e Conselheiros:</div>
+                        Classificar denúncias envolvendo conselhos e conselheiros.
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title"><span class="initial">O</span> – Outros demandantes (externos ao sistema Cofen/Conselhos):</div>
+                        Classificar denúncias de fontes externas.
+                    </div>
+
+                    <div class="flow-arrow tooltip" title="Denúncias classificadas"></div>
+
+                    <div class="step">
+                        <div class="step-title">Denúncias Classificadas</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3ª ETAPA -->
+        <div class="etapa etapa-3" id="etapa-3">
+            <div class="etapa-title" onclick="toggleEtapa(3)">
+                3ª ETAPA: Análise Técnica e Encaminhamentos – Método PROSA
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="content">
+                <div class="step">
+                    <div class="step-title">Nesta etapa, as manifestações, incluindo as denúncias classificadas, passam por análise técnica e são direcionadas para as providências adequadas, com atenção aos prazos.</div>
+                </div>
+
+                <div class="flow-arrow tooltip" title="Início da análise"></div>
+
+                <div class="step">
+                    <div class="step-title">Início da Análise e Encaminhamentos</div>
+                </div>
+
+                <div class="metodo-title" onclick="toggleMethod('prosa')">
+                    PROSA: Análise Técnica e Encaminhamentos
+                    <span class="toggle-icon">▼</span>
+                </div>
+
+                <div id="prosa-method">
+                    <div class="step">
+                        <div class="step-title"><span class="initial">P</span> – Prazos:</div>
+                        - 15 dias: Prazo para análise na Ouvidoria.<br>
+                        - 10 dias: Prazo para resposta do setor competente.<br>
+                        - 5 dias: Prazo para resposta final ao demandante.
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title"><span class="initial">R</span> – Rotina:</div>
+                        Avaliar manifestações ordinárias ou já tratadas em precedentes.
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title"><span class="initial">O</span> – Outros:</div>
+                        Classificar manifestações não padronizadas (Assuntos Diversos e Sensíveis).
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title"><span class="initial">S</span> – Solicitações / SEI:</div>
+                        Registrar pedidos de providência formal do usuário e acompanhar o processo no SEI.
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title"><span class="initial">A</span> – Anuidades/Inscrições:</div>
+                        Tratar demandas específicas ligadas a inscrição, registro e cadastro do profissional ou questões financeiras.
+                    </div>
+
+                    <div class="flow-arrow tooltip" title="Tomada de decisão"></div>
+
+                    <div class="step">
+                        <div class="step-title">Tomada de Decisão e Encaminhamento</div>
+                    </div>
+
+                    <div class="flow-arrow tooltip" title="Finalização"></div>
+
+                    <div class="step">
+                        <div class="step-title">Resposta ao Demandante e Finalização</div>
+                        <div>Caso o processo permaneça tramitando internamente para análise e deliberações, o manifestante será informado e a manifestação será reaberta após a finalização da análise pela área competente.</div>
+                    </div>
+
+                    <div class="flow-arrow tooltip" title="Fim do processo"></div>
+
+                    <div class="step">
+                        <div class="step-title">Fim do Processo da Manifestação</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Variáveis do quiz
+        let currentDifficulty = '';
+        let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = [];
+        
+        // Perguntas do quiz organizadas por dificuldade
+        const quizQuestions = {
+            easy: [
+                {
+                    question: "Qual é o objetivo principal da 1ª Etapa (Método DIA)?",
+                    options: [
+                        "Classificar denúncias por gravidade",
+                        "Triagem inicial das manifestações",
+                        "Encaminhar respostas aos demandantes",
+                        "Registrar processos no SEI"
+                    ],
+                    answer: 1,
+                    explanation: "A 1ª Etapa tem como objetivo principal a triagem inicial das manifestações, categorizando-as e priorizando as ações."
+                },
+                {
+                    question: "O que significa a letra 'D' no método DIA?",
+                    options: [
+                        "Documentação",
+                        "Denúncias",
+                        "Diretrizes",
+                        "Divulgação"
+                    ],
+                    answer: 1,
+                    explanation: "No método DIA, a letra 'D' representa Denúncias, que devem ser identificadas e separadas das demais manifestações."
+                },
+                {
+                    question: "Qual é o prazo para análise na Ouvidoria na 3ª Etapa?",
+                    options: [
+                        "5 dias",
+                        "10 dias",
+                        "15 dias",
+                        "20 dias"
+                    ],
+                    answer: 2,
+                    explanation: "Na 3ª Etapa (Método PROSA), o prazo para análise na Ouvidoria é de 15 dias."
+                },
+                {
+                    question: "Qual método é utilizado na 2ª Etapa?",
+                    options: [
+                        "Método DIA",
+                        "Método JALECO",
+                        "Método PROSA",
+                        "Método SEI"
+                    ],
+                    answer: 1,
+                    explanation: "A 2ª Etapa utiliza o Método JALECO para classificação estratégica das denúncias."
+                }
+            ],
+            medium: [
+                {
+                    question: "Qual das seguintes NÃO é uma categoria do método JALECO?",
+                    options: [
+                        "Judiciais/Jurídicas",
+                        "Assédio",
+                        "Financeiro",
+                        "Conselhos e Conselheiros"
+                    ],
+                    answer: 2,
+                    explanation: "Financeiro não é uma categoria do método JALECO. As categorias são: Judiciais/Jurídicas, Assédio, Legislações, Éticas, Conselhos e Conselheiros, e Outros demandantes."
+                },
+                {
+                    question: "O que a letra 'A' representa no método PROSA?",
+                    options: [
+                        "Análise",
+                        "Anuidades/Inscrições",
+                        "Acompanhamento",
+                        "Atendimento"
+                    ],
+                    answer: 1,
+                    explanation: "No método PROSA, a letra 'A' representa Anuidades/Inscrições, que trata de demandas específicas ligadas a inscrição, registro e cadastro do profissional."
+                },
+                {
+                    question: "Qual é a sequência correta dos fluxos da Ouvidoria?",
+                    options: [
+                        "DIA → PROSA → JALECO",
+                        "JALECO → DIA → PROSA",
+                        "DIA → JALECO → PROSA",
+                        "PROSA → JALECO → DIA"
+                    ],
+                    answer: 2,
+                    explanation: "A sequência correta é: 1ª Etapa (DIA) → 2ª Etapa (JALECO) → 3ª Etapa (PROSA)."
+                },
+                {
+                    question: "Qual é o prazo para resposta final ao demandante?",
+                    options: [
+                        "5 dias",
+                        "10 dias",
+                        "15 dias",
+                        "30 dias"
+                    ],
+                    answer: 0,
+                    explanation: "O prazo para resposta final ao demandante é de 5 dias, conforme estabelecido na 3ª Etapa (Método PROSA)."
+                }
+            ],
+            hard: [
+                {
+                    question: "Qual das seguintes ações NÃO faz parte da 1ª Etapa (Método DIA)?",
+                    options: [
+                        "Monitorar manifestações em aberto",
+                        "Atualizar legislações vigentes",
+                        "Classificar denúncias por tipo de infração",
+                        "Identificar manifestações que relatam irregularidades"
+                    ],
+                    answer: 2,
+                    explanation: "Classificar denúncias por tipo de infração é uma ação da 2ª Etapa (Método JALECO), não da 1ª Etapa."
+                },
+                {
+                    question: "Qual categoria do método JALECO seria apropriada para uma denúncia sobre violação do Código de Ética?",
+                    options: [
+                        "Judiciais/Jurídicas",
+                        "Assédio",
+                        "Éticas",
+                        "Legislações"
+                    ],
+                    answer: 2,
+                    explanation: "Denúncias sobre violação do Código de Ética devem ser classificadas na categoria 'Éticas (conduta profissional)' do método JALECO."
+                },
+                {
+                    question: "O que deve acontecer se um processo permanecer tramitando internamente após a resposta ao demandante?",
+                    options: [
+                        "Deve ser arquivado automaticamente",
+                        "O manifestante deve ser informado e a manifestação será reaberta após a finalização",
+                        "Deve ser encaminhado para outra Ouvidoria",
+                        "O prazo é estendido automaticamente por mais 15 dias"
+                    ],
+                    answer: 1,
+                    explanation: "Conforme o fluxo, caso o processo permaneça tramitando internamente, o manifestante será informado e a manifestação será reaberta após a finalização da análise pela área competente."
+                },
+                {
+                    question: "Qual é a finalidade do método PROSA na 3ª Etapa?",
+                    options: [
+                        "Triagem inicial das manifestações",
+                        "Classificação estratégica das denúncias",
+                        "Análise técnica e encaminhamentos com atenção aos prazos",
+                        "Registro de processos administrativos"
+                    ],
+                    answer: 2,
+                    explanation: "O método PROSA tem como finalidade a análise técnica e encaminhamentos das manifestações, com atenção especial aos prazos estabelecidos."
+                }
+            ]
+        };
+
+        // Funções do quiz
+        function showQuizSection() {
+            document.querySelectorAll('.etapa').forEach(etapa => {
+                etapa.style.display = 'none';
+            });
+            document.getElementById('quiz-section').style.display = 'block';
+            document.querySelector('.progress').style.width = '0%';
+            document.getElementById('main-header').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function startQuiz(difficulty) {
+            currentDifficulty = difficulty;
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = [];
+            
+            // Esconder botões de dificuldade e mostrar o quiz selecionado
+            document.querySelector('.difficulty-buttons').style.display = 'none';
+            document.getElementById(`${difficulty}-quiz`).style.display = 'block';
+            document.getElementById('quiz-result').style.display = 'none';
+            
+            // Carregar a primeira pergunta
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const quizContainer = document.getElementById(`${currentDifficulty}-quiz`);
+            const question = quizQuestions[currentDifficulty][currentQuestion];
+            
+            // Atualizar contador
+            document.getElementById('question-counter').textContent = `Pergunta ${currentQuestion + 1}/${quizQuestions[currentDifficulty].length}`;
+            
+            // Criar HTML da pergunta
+            let html = `
+                <div class="question">
+                    <div class="question-text">${question.question}</div>
+                    <div class="options">
+            `;
+            
+            // Adicionar opções
+            question.options.forEach((option, index) => {
+                const isSelected = userAnswers[currentQuestion] === index;
+                html += `
+                    <div class="option ${isSelected ? 'selected' : ''}" onclick="selectOption(${index})">
+                        ${option}
+                    </div>
+                `;
+            });
+            
+            html += `</div></div>`;
+            quizContainer.innerHTML = html;
+            
+            // Atualizar botões de navegação
+            document.getElementById('prev-btn').disabled = currentQuestion === 0;
+            document.getElementById('next-btn').textContent = currentQuestion === quizQuestions[currentDifficulty].length - 1 ? 'Finalizar' : 'Próxima';
+        }
+
+        function selectOption(optionIndex) {
+            const options = document.querySelectorAll('.option');
+            options.forEach(opt => opt.classList.remove('selected'));
+            options[optionIndex].classList.add('selected');
+            
+            // Salvar resposta do usuário
+            userAnswers[currentQuestion] = optionIndex;
+        }
+
+        function nextQuestion() {
+            // Verificar se há resposta selecionada
+            if (userAnswers[currentQuestion] === undefined && currentQuestion < quizQuestions[currentDifficulty].length - 1) {
+                alert('Por favor, selecione uma opção antes de continuar.');
+                return;
+            }
+            
+            // Avançar para próxima pergunta ou mostrar resultados
+            if (currentQuestion < quizQuestions[currentDifficulty].length - 1) {
+                currentQuestion++;
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                loadQuestion();
+            }
+        }
+
+        function showResults() {
+            // Calcular pontuação
+            score = 0;
+            quizQuestions[currentDifficulty].forEach((question, index) => {
+                if (userAnswers[index] === question.answer) {
+                    score++;
+                }
+            });
+            
+            // Mostrar resultados
+            const quizContainer = document.getElementById(`${currentDifficulty}-quiz`);
+            const resultContainer = document.getElementById('quiz-result');
+            const feedbackContainer = document.getElementById('feedback');
+            
+            quizContainer.style.display = 'none';
+            resultContainer.style.display = 'block';
+            document.getElementById('final-score').textContent = score;
+            
+            // Gerar feedback
+            let feedback = '<h4>Detalhes das respostas:</h4><ul>';
+            quizQuestions[currentDifficulty].forEach((question, index) => {
+                const isCorrect = userAnswers[index] === question.answer;
+                feedback += `
+                    <li>
+                        <strong>Pergunta ${index + 1}:</strong> ${isCorrect ? '✓' : '✗'}
+                        ${!isCorrect ? `<br><em>Resposta correta: ${question.options[question.answer]}</em>` : ''}
+                        <br><em>Explicação:</em> ${question.explanation}
+                    </li>
+                `;
+            });
+            feedback += '</ul>';
+            feedbackContainer.innerHTML = feedback;
+            
+            // Rolar para o resultado
+            resultContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function restartQuiz() {
+            // Resetar quiz
+            document.getElementById('quiz-result').style.display = 'none';
+            document.querySelector('.difficulty-buttons').style.display = 'flex';
+            document.getElementById(`${currentDifficulty}-quiz`).style.display = 'none';
+            currentDifficulty = '';
+        }
+
+        // Funções originais do aplicativo
+        function toggleEtapa(num) {
+            const etapa = document.getElementById(`etapa-${num}`);
+            const content = etapa.querySelector('.content');
+            const icon = etapa.querySelector('.toggle-icon');
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                icon.textContent = '▼';
+                updateProgress();
+            } else {
+                content.style.display = 'none';
+                icon.textContent = '▶';
+                updateProgress();
+            }
+        }
+
+        function toggleMethod(method) {
+            const methodDiv = document.getElementById(`${method}-method`);
+            const icon = document.querySelector(`.metodo-title[onclick="toggleMethod('${method}')"] .toggle-icon`);
+            if (methodDiv.style.display === 'none') {
+                methodDiv.style.display = 'block';
+                icon.textContent = '▼';
+            } else {
+                methodDiv.style.display = 'none';
+                icon.textContent = '▶';
+            }
+            updateProgress();
+        }
+
+        function showEtapa(num) {
+            // Esconder todas as etapas primeiro
+            document.querySelectorAll('.etapa').forEach(etapa => {
+                etapa.style.display = 'none';
+            });
+            document.getElementById('quiz-section').style.display = 'none';
+
+            // Mostrar apenas a etapa selecionada
+            const etapa = document.getElementById(`etapa-${num}`);
+            etapa.style.display = 'block';
+
+            // Expandir conteúdo
+            const content = etapa.querySelector('.content');
+            content.style.display = 'block';
+            etapa.querySelector('.toggle-icon').textContent = '▼';
+
+            // Rolar para a etapa
+            etapa.scrollIntoView({ behavior: 'smooth' });
+
+            updateProgress();
+        }
+
+        function showAll() {
+            document.querySelectorAll('.etapa').forEach(etapa => {
+                etapa.style.display = 'block';
+                const content = etapa.querySelector('.content');
+                content.style.display = 'block';
+                etapa.querySelector('.toggle-icon').textContent = '▼';
+            });
+            document.getElementById('quiz-section').style.display = 'none';
+
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const totalSteps = document.querySelectorAll('.step').length;
+            let visibleSteps = 0;
+
+            document.querySelectorAll('.step').forEach(step => {
+                if (step.offsetParent !== null) { // Verifica se o elemento está visível
+                    visibleSteps++;
+                }
+            });
+
+            const progress = (visibleSteps / totalSteps) * 100;
+            document.getElementById('progress').style.width = `${progress}%`;
+        }
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            // Configurar tooltips
+            document.querySelectorAll('.tooltip').forEach(tooltip => {
+                const text = tooltip.getAttribute('title');
+                if (text) {
+                    tooltip.removeAttribute('title');
+                    const tooltipSpan = document.createElement('span');
+                    tooltipSpan.className = 'tooltiptext';
+                    tooltipSpan.textContent = text;
+                    tooltip.appendChild(tooltipSpan);
+                }
+            });
+
+            // Expandir tudo inicialmente
+            showAll();
+
+            // Configurar clique no cabeçalho principal
+            document.getElementById('main-header').addEventListener('click', function() {
+                const icon = this.querySelector('.toggle-icon');
+                if (icon.textContent === '▼') {
+                    document.querySelectorAll('.content').forEach(content => {
+                        content.style.display = 'none';
+                    });
+                    document.getElementById('quiz-section').style.display = 'none';
+                    document.querySelectorAll('.toggle-icon').forEach(i => {
+                        if (i !== icon) i.textContent = '▶';
+                    });
+                    icon.textContent = '▶';
+                } else {
+                    showAll();
+                    icon.textContent = '▼';
+                }
+                updateProgress();
+            });
+        });
+    </script>
+</body>
+</html>
