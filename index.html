@@ -4,385 +4,494 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>FLUXOS DA OUVIDORIA</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
+        :root {
+            --etapa1: #2980b9;
+            --etapa2: #e67e22;
+            --etapa3: #27ae60;
+            --destaque: #e74c3c;
+            --fundo: #f8f9fa;
+            --texto: #2c3e50;
+            --correto: #2ecc71;
+            --incorreto: #e74c3c;
+        }
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            margin: 0;
+            background-color: var(--fundo);
+            color: var(--texto);
             padding: 10px;
-            background-color: #f5f5f5;
-            color: #333;
-            -webkit-text-size-adjust: 100%;
         }
         .container {
-            max-width: 100%;
+            max-width: 800px;
             margin: 0 auto;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            border-radius: 8px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
             overflow: hidden;
         }
         .header {
-            background-color: #2c3e50;
+            background: linear-gradient(135deg, #0056b3, #003366);
             color: white;
-            padding: 15px;
+            padding: 20px;
             text-align: center;
-            font-size: 20px;
+            font-size: 1.4rem;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s;
         }
         .header:hover {
-            background-color: #34495e;
+            background: linear-gradient(135deg, #004494, #002b4d);
         }
-        .etapa {
-            padding: 15px;
-            margin-bottom: 5px;
-            transition: all 0.3s;
+        .progress-bar {
+            height: 8px;
+            background: #e0e0e0;
+            width: 100%;
         }
-        .etapa-title {
-            font-weight: bold;
-            text-align: center;
-            font-size: 18px;
-            margin-bottom: 12px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-        .toggle-icon {
-            font-size: 14px;
-            margin-top: 5px;
-        }
-        .metodo-title {
-            font-weight: bold;
-            text-align: center;
-            font-size: 16px;
-            margin: 12px 0;
-            background-color: rgba(255,255,255,0.3);
-            padding: 8px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .step {
-            margin-bottom: 12px;
-            padding: 10px;
-            border-radius: 5px;
-            background-color: rgba(255,255,255,0.7);
-            transition: all 0.3s;
-        }
-        .step:hover {
-            transform: translateX(3px);
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-        }
-        .step-title {
-            font-weight: bold;
-            margin-bottom: 6px;
-        }
-        .initial {
-            font-weight: bold;
-            color: #2c3e50;
-            font-size: 1.1em;
-        }
-        .flow-arrow {
-            text-align: center;
-            margin: 12px 0;
-            position: relative;
-        }
-        .flow-arrow::before {
-            content: "➔";
-            display: block;
-            font-size: 24px;
-            color: #2c3e50;
-            font-weight: bold;
-            transform: rotate(90deg);
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { opacity: 0.7; }
-            50% { opacity: 1; }
-            100% { opacity: 0.7; }
-        }
-        .etapa-1 {
-            background-color: #d4e6f1;
-        }
-        .etapa-1 .etapa-title {
-            color: #2980b9;
-            border-bottom-color: #2980b9;
-        }
-        .etapa-2 {
-            background-color: #fdebd0;
-        }
-        .etapa-2 .etapa-title {
-            color: #e67e22;
-            border-bottom-color: #e67e22;
-        }
-        .etapa-3 {
-            background-color: #d5f5e3;
-        }
-        .etapa-3 .etapa-title {
-            color: #27ae60;
-            border-bottom-color: #27ae60;
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--etapa1), var(--etapa2), var(--etapa3));
+            width: 0%;
+            transition: width 0.5s;
         }
         .nav-buttons {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            padding: 10px;
-            background-color: #ecf0f1;
-            gap: 5px;
+            gap: 10px;
+            padding: 15px;
+            background: #f1f1f1;
         }
         .nav-btn {
-            padding: 8px 12px;
-            background-color: #3498db;
-            color: white;
+            padding: 10px 15px;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
+            background: white;
+            color: #0056b3;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
-            font-size: 14px;
-            flex: 1 1 auto;
-            min-width: 120px;
-            max-width: 45%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            flex: 1 1 150px;
+            max-width: 180px;
+            text-align: center;
         }
         .nav-btn:hover {
-            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
         }
-        .hidden {
-            display: none;
-        }
-        .progress-bar {
-            width: 100%;
-            background-color: #ecf0f1;
-            height: 8px;
-            margin-bottom: 15px;
-            border-radius: 5px;
+        .etapa {
+            margin: 15px;
+            border-radius: 8px;
             overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-top: 5px solid;
         }
-        .progress {
-            height: 100%;
-            background: linear-gradient(90deg, #2980b9, #e67e22, #27ae60);
-            width: 0%;
-            transition: width 0.5s;
+        .etapa-1 { border-color: var(--etapa1); }
+        .etapa-2 { border-color: var(--etapa2); }
+        .etapa-3 { border-color: var(--etapa3); }
+        .etapa-title {
+            padding: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
         }
-        .tooltip {
-            position: relative;
-            display: inline-block;
+        .etapa-1 .etapa-title { color: var(--etapa1); }
+        .etapa-2 .etapa-title { color: var(--etapa2); }
+        .etapa-3 .etapa-title { color: var(--etapa3); }
+        .content {
+            padding: 0 15px 15px;
+            background: white;
         }
-        .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 280px;
-            background-color: #2c3e50;
-            color: #fff;
-            text-align: center;
+        .step {
+            background: #f8f9fa;
             border-radius: 6px;
-            padding: 8px;
-            position: absolute;
-            z-index: 100;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0;
-            transition: opacity 0.3s;
-            font-size: 14px;
-            font-weight: normal;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            padding: 15px;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+            border-left: 4px solid;
         }
-        .tooltip:hover .tooltiptext {
-            visibility: visible;
-            opacity: 1;
+        .etapa-1 .step { border-color: var(--etapa1); }
+        .etapa-2 .step { border-color: var(--etapa2); }
+        .etapa-3 .step { border-color: var(--etapa3); }
+        .step:hover {
+            transform: translateX(5px);
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+        }
+        .step-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--texto);
+        }
+        .flow-arrow {
+            text-align: center;
+            margin: 10px 0;
+            font-size: 1.8rem;
+            color: var(--destaque);
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
         }
         .etapa-link {
-            color: #2c3e50;
-            text-decoration: underline;
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 15px;
+            background: rgba(0,86,179,0.1);
+            color: #0056b3;
+            border-radius: 6px;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
-            display: block;
-            margin-top: 8px;
-            font-size: 14px;
+            text-decoration: none;
         }
         .etapa-link:hover {
-            color: #e74c3c;
+            background: #0056b3;
+            color: white;
+            transform: translateY(-2px);
         }
-
         /* Estilos do Quiz */
         .quiz-section {
-            padding: 15px;
-            background-color: #f8f9fa;
-            margin: 15px 0;
+            padding: 20px;
+            background: white;
+            margin: 15px;
             border-radius: 8px;
-            border: 1px solid #ddd;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            display: none;
         }
         .quiz-title {
             text-align: center;
-            font-size: 22px;
-            margin-bottom: 15px;
-            color: #2c3e50;
+            color: #0056b3;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
         }
         .difficulty-buttons {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 15px;
             margin-bottom: 20px;
             flex-wrap: wrap;
         }
         .difficulty-btn {
-            padding: 10px 15px;
+            padding: 12px 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        .easy-btn {
-            background-color: #27ae60;
-            color: white;
-        }
-        .medium-btn {
-            background-color: #f39c12;
-            color: white;
-        }
-        .hard-btn {
-            background-color: #e74c3c;
-            color: white;
-        }
+        .easy-btn { background: #27ae60; color: white; }
+        .medium-btn { background: #f39c12; color: white; }
+        .hard-btn { background: #e74c3c; color: white; }
         .difficulty-btn:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         .quiz-container {
             display: none;
         }
         .question {
-            background-color: white;
-            padding: 15px;
+            background: #f8f9fa;
+            padding: 20px;
             border-radius: 8px;
             margin-bottom: 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .question-text {
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            color: #0056b3;
+            font-size: 1.1rem;
         }
         .options {
             display: grid;
             gap: 10px;
         }
         .option {
-            padding: 10px;
-            background-color: #ecf0f1;
-            border-radius: 5px;
+            padding: 12px;
+            background: #e9ecef;
+            border-radius: 6px;
             cursor: pointer;
             transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
         }
         .option:hover {
-            background-color: #d6eaf8;
+            background: #dee2e6;
         }
         .option.selected {
-            background-color: #3498db;
+            background: #0056b3;
             color: white;
         }
         .option.correct {
-            background-color: #2ecc71;
+            background: var(--correto);
             color: white;
+            animation: correctAnswer 0.5s ease;
         }
         .option.incorrect {
-            background-color: #e74c3c;
+            background: var(--incorreto);
             color: white;
+            animation: incorrectAnswer 0.5s ease;
+        }
+        @keyframes correctAnswer {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        @keyframes incorrectAnswer {
+            0% { transform: translateX(0); }
+            20% { transform: translateX(-5px); }
+            40% { transform: translateX(5px); }
+            60% { transform: translateX(-5px); }
+            80% { transform: translateX(5px); }
+            100% { transform: translateX(0); }
         }
         .quiz-nav {
             display: flex;
             justify-content: space-between;
-            margin-top: 15px;
+            margin-top: 20px;
+            align-items: center;
         }
         .quiz-btn {
-            padding: 8px 15px;
-            border: none;
-            border-radius: 5px;
-            background-color: #3498db;
+            padding: 10px 20px;
+            background: #0056b3;
             color: white;
+            border: none;
+            border-radius: 6px;
             cursor: pointer;
             transition: all 0.3s;
         }
         .quiz-btn:hover {
-            background-color: #2980b9;
+            background: #004494;
         }
         .quiz-btn:disabled {
-            background-color: #95a5a6;
+            background: #cccccc;
             cursor: not-allowed;
         }
+        
+        /* ESTILOS ATUALIZADOS PARA RESULTADO */
         .result-container {
             text-align: center;
-            padding: 20px;
+            padding: 30px;
             display: none;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            margin: 20px 0;
         }
         .result-title {
-            font-size: 24px;
-            margin-bottom: 10px;
+            font-size: 1.5rem;
+            color: #0056b3;
+            margin-bottom: 20px;
         }
-        .score {
-            font-size: 20px;
+        .result-visual {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            margin: 0 auto 25px;
+        }
+        .result-circle {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: all 1s ease;
+        }
+        .result-inner {
+            width: 70%;
+            height: 70%;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.1);
+        }
+        .result-percent {
+            font-size: 3rem;
             font-weight: bold;
-            margin-bottom: 15px;
+            color: #2c3e50;
+            line-height: 1;
+            margin-bottom: 5px;
+            transition: all 0.5s ease;
         }
-        .feedback {
-            margin-bottom: 15px;
+        .result-label {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            font-weight: 600;
         }
-        .restart-btn {
+        .result-feedback {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin: 20px 0;
             padding: 10px 20px;
-            background-color: #2ecc71;
-            color: white;
-            border: none;
-            border-radius: 5px;
+            border-radius: 30px;
+            display: inline-block;
+        }
+        .result-stars {
+            margin: 20px 0;
+            font-size: 2rem;
+            color: #ffc107;
+        }
+        
+        /* ESTILOS ATUALIZADOS PARA FEEDBACK (ÍCONES À DIREITA) */
+        .feedback-item {
+            margin-bottom: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            background: #f8f9fa;
+            text-align: left;
+            position: relative;
+            margin-right: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .feedback-question {
             font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
+            margin-bottom: 12px;
+            color: #2c3e50;
+            padding-right: 40px; /* Espaço para o ícone à direita */
         }
-        .restart-btn:hover {
-            background-color: #27ae60;
+        .correct-icon, .incorrect-icon {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            font-size: 1.3rem;
+            background: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-
-        @media (max-width: 480px) {
-            .header {
-                font-size: 18px;
-                padding: 12px;
+        .correct-icon {
+            color: #27ae60;
+            border: 2px solid #27ae60;
+        }
+        .incorrect-icon {
+            color: #e74c3c;
+            border: 2px solid #e74c3c;
+        }
+        .feedback-answer {
+            margin-bottom: 8px;
+            padding-left: 10px;
+            position: relative;
+            line-height: 1.5;
+        }
+        .feedback-explanation {
+            font-style: italic;
+            color: #666;
+            padding: 12px;
+            background: white;
+            border-radius: 6px;
+            margin-top: 10px;
+            border-left: 3px solid #0056b3;
+        }
+        
+        /* Cores baseadas no desempenho */
+        .excellent .result-circle {
+            background: conic-gradient(#27ae60 0%, #27ae60 100%);
+        }
+        .excellent .result-percent,
+        .excellent .result-feedback {
+            color: #27ae60;
+        }
+        .excellent .result-feedback {
+            background: rgba(39, 174, 96, 0.1);
+        }
+        
+        .good .result-circle {
+            background: conic-gradient(#2ecc71 0%, #2ecc71 100%);
+        }
+        .good .result-percent,
+        .good .result-feedback {
+            color: #2ecc71;
+        }
+        .good .result-feedback {
+            background: rgba(46, 204, 113, 0.1);
+        }
+        
+        .average .result-circle {
+            background: conic-gradient(#f39c12 0%, #f39c12 100%);
+        }
+        .average .result-percent,
+        .average .result-feedback {
+            color: #f39c12;
+        }
+        .average .result-feedback {
+            background: rgba(243, 156, 18, 0.1);
+        }
+        
+        .poor .result-circle {
+            background: conic-gradient(#e74c3c 0%, #e74c3c 100%);
+        }
+        .poor .result-percent,
+        .poor .result-feedback {
+            color: #e74c3c;
+        }
+        .poor .result-feedback {
+            background: rgba(231, 76, 60, 0.1);
+        }
+        
+        /* Animações */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .pulse {
+            animation: pulse 1.5s infinite;
+        }
+        
+        @media (max-width: 600px) {
+            .header { font-size: 1.2rem; padding: 15px; }
+            .nav-btn { padding: 8px 12px; font-size: 0.9rem; }
+            .etapa-title { font-size: 1.1rem; }
+            .difficulty-buttons { flex-direction: column; }
+            .difficulty-btn { width: 100%; }
+            .question-text { font-size: 1rem; }
+            .option { padding: 10px; }
+            .result-visual {
+                width: 180px;
+                height: 180px;
             }
-            .etapa-title {
-                font-size: 16px;
+            .result-percent {
+                font-size: 2.5rem;
             }
-            .metodo-title {
-                font-size: 15px;
+            .result-feedback {
+                font-size: 1.1rem;
             }
-            .step {
-                padding: 8px;
-                font-size: 14px;
+            .feedback-item {
+                padding: 12px 15px;
+                margin-right: 5px;
             }
-            .nav-btn {
-                padding: 6px 8px;
-                font-size: 13px;
-                min-width: 100px;
+            .correct-icon, .incorrect-icon {
+                right: 10px;
+                top: 12px;
+                font-size: 1.1rem;
+                width: 26px;
+                height: 26px;
             }
-            .tooltip .tooltiptext {
-                width: 240px;
-                font-size: 13px;
-            }
-            .difficulty-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            .difficulty-btn {
-                width: 100%;
-                max-width: 200px;
-            }
-            .options {
-                grid-template-columns: 1fr;
+            .feedback-question {
+                padding-right: 30px;
             }
         }
     </style>
@@ -391,7 +500,7 @@
     <div class="container">
         <div class="header" id="main-header">
             FLUXOS E ROTINAS DIÁRIAS DA OUVIDORIA
-            <span class="toggle-icon">▼</span>
+            <i class="fas fa-chevron-down toggle-icon"></i>
         </div>
 
         <div class="progress-bar">
@@ -405,8 +514,8 @@
             <button class="nav-btn" onclick="showQuizSection()">Quiz</button>
         </div>
 
-        <!-- Seção do Quiz -->
-        <div class="quiz-section" id="quiz-section" style="display: none;">
+        <!-- Seção do Quiz Funcional -->
+        <div class="quiz-section" id="quiz-section">
             <h2 class="quiz-title">Quiz da Ouvidoria</h2>
             <div class="difficulty-buttons">
                 <button class="difficulty-btn easy-btn" onclick="startQuiz('easy')">Fácil</button>
@@ -414,28 +523,35 @@
                 <button class="difficulty-btn hard-btn" onclick="startQuiz('hard')">Difícil</button>
             </div>
 
-            <div id="easy-quiz" class="quiz-container">
-                <!-- Perguntas fáceis serão inseridas aqui pelo JavaScript -->
-            </div>
-
-            <div id="medium-quiz" class="quiz-container">
-                <!-- Perguntas médias serão inseridas aqui pelo JavaScript -->
-            </div>
-
-            <div id="hard-quiz" class="quiz-container">
-                <!-- Perguntas difíceis serão inseridas aqui pelo JavaScript -->
-            </div>
+            <div id="easy-quiz" class="quiz-container"></div>
+            <div id="medium-quiz" class="quiz-container"></div>
+            <div id="hard-quiz" class="quiz-container"></div>
 
             <div class="quiz-nav">
                 <button id="prev-btn" class="quiz-btn" onclick="prevQuestion()" disabled>Anterior</button>
-                <span id="question-counter">Pergunta 1/4</span>
+                <span id="question-counter" class="question-counter">Pergunta 1/4</span>
                 <button id="next-btn" class="quiz-btn" onclick="nextQuestion()">Próxima</button>
             </div>
 
+            <!-- Seção de Resultado -->
             <div id="quiz-result" class="result-container">
-                <h3 class="result-title">Resultado do Quiz</h3>
-                <div class="score">Pontuação: <span id="final-score">0</span>/4</div>
-                <div class="feedback" id="feedback"></div>
+                <h3 class="result-title">Seu Desempenho</h3>
+                
+                <div class="result-visual">
+                    <div class="result-circle" id="result-circle">
+                        <div class="result-inner">
+                            <div class="result-percent" id="result-percent">0%</div>
+                            <div class="result-label">de acerto</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="result-feedback" id="result-feedback"></div>
+                
+                <div class="result-stars" id="result-stars"></div>
+                
+                <div id="feedback"></div>
+                
                 <button class="restart-btn" onclick="restartQuiz()">Fazer Novamente</button>
             </div>
         </div>
@@ -444,48 +560,47 @@
         <div class="etapa etapa-1" id="etapa-1">
             <div class="etapa-title" onclick="toggleEtapa(1)">
                 1ª ETAPA: Organização da Rotina Diária – Método DIA
-                <span class="toggle-icon">▼</span>
+                <i class="fas fa-chevron-down toggle-icon"></i>
             </div>
             <div class="content">
                 <div class="step">
                     <div class="step-title">Esta etapa é crucial para a triagem inicial das manifestações, categorizando-as e priorizando as ações.</div>
                 </div>
 
-                <div class="flow-arrow tooltip" title="Fluxo para início do expediente"></div>
+                <div class="flow-arrow">
+                    <i class="fas fa-arrow-down"></i>
+                </div>
 
                 <div class="step">
                     <div class="step-title">Início do Expediente:</div>
                 </div>
 
-                <div class="metodo-title" onclick="toggleMethod('dia')">
-                    DIA: Macroestrutura da Jornada de Atendimento
-                    <span class="toggle-icon">▼</span>
+                <div class="step">
+                    <div class="step-title"><span style="color:var(--etapa1);font-weight:bold">D</span> – Denúncias:</div>
+                    Identificar e separar manifestações que relatam irregularidades.
+                    <div class="flow-arrow">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+                    <div class="etapa-link" onclick="showEtapa(2)">(Para Denúncias) Seguir para a 2ª ETAPA – Classificação das Denúncias (Método JALECO)</div>
                 </div>
 
-                <div id="dia-method">
-                    <div class="step">
-                        <div class="step-title"><span class="initial">D</span> – Denúncias:</div>
-                        Identificar e separar manifestações que relatam irregularidades.
-                        <div class="flow-arrow tooltip" title="Fluxo para classificação de denúncias"></div>
-                        <div class="etapa-link" onclick="showEtapa(2)">(Para Denúncias) Seguir para a 2ª ETAPA – Classificação das Denúncias (Método JALECO)</div>
-                    </div>
+                <div class="step">
+                    <div class="step-title"><span style="color:var(--etapa1);font-weight:bold">I</span> – Informações:</div>
+                    Levantar e atualizar atos normativos e legislações vigentes.
+                </div>
 
-                    <div class="step">
-                        <div class="step-title"><span class="initial">I</span> – Informações:</div>
-                        Levantar e atualizar atos normativos e legislações vigentes.
-                    </div>
+                <div class="step">
+                    <div class="step-title"><span style="color:var(--etapa1);font-weight:bold">A</span> – Acompanhamento:</div>
+                    Monitorar continuamente as manifestações em aberto (tramitando, encaminhadas, respondidas e registradas no SEI).
+                </div>
 
-                    <div class="step">
-                        <div class="step-title"><span class="initial">A</span> – Acompanhamento:</div>
-                        Monitorar continuamente as manifestações em aberto (tramitando, encaminhadas, respondidas e registradas no SEI).
-                    </div>
+                <div class="flow-arrow">
+                    <i class="fas fa-arrow-down"></i>
+                </div>
 
-                    <div class="flow-arrow tooltip" title="Fim da triagem diária"></div>
-
-                    <div class="step">
-                        <div class="step-title">Fim da Triagem Diária</div>
-                        <div>(Para Assuntos de Rotina)</div>
-                    </div>
+                <div class="step">
+                    <div class="step-title">Fim da Triagem Diária</div>
+                    <div>(Para Assuntos de Rotina)</div>
                 </div>
             </div>
         </div>
@@ -494,60 +609,57 @@
         <div class="etapa etapa-2" id="etapa-2">
             <div class="etapa-title" onclick="toggleEtapa(2)">
                 2ª ETAPA: Classificação das Denúncias – Método JALECO
-                <span class="toggle-icon">▼</span>
+                <i class="fas fa-chevron-down toggle-icon"></i>
             </div>
             <div class="content">
                 <div class="step">
                     <div class="step-title">Após a triagem inicial das denúncias, o método JALECO permite uma classificação estratégica para direcionar o tratamento especializado.</div>
                 </div>
 
-                <div class="flow-arrow tooltip" title="Início da classificação"></div>
+                <div class="flow-arrow">
+                    <i class="fas fa-arrow-down"></i>
+                </div>
 
                 <div class="step">
                     <div class="step-title">Início da Classificação de Denúncias</div>
                 </div>
 
-                <div class="metodo-title" onclick="toggleMethod('jaleco')">
-                    JALECO: Classificação Estratégica das Denúncias
-                    <span class="toggle-icon">▼</span>
+                <div class="step">
+                    <div class="step-title"><span style="color:var(--etapa2);font-weight:bold">J</span> – Judiciais/Jurídicas:</div>
+                    Classificar denúncias relacionadas a questões legais e jurídicas.
                 </div>
 
-                <div id="jaleco-method">
-                    <div class="step">
-                        <div class="step-title"><span class="initial">J</span> – Judiciais/Jurídicas:</div>
-                        Classificar denúncias relacionadas a questões legais e jurídicas.
-                    </div>
+                <div class="step">
+                    <div class="step-title"><span style="color:var(--etapa2);font-weight:bold">A</span> – Assédio (moral ou sexual):</div>
+                    Classificar denúncias de assédio.
+                </div>
 
-                    <div class="step">
-                        <div class="step-title"><span class="initial">A</span> – Assédio (moral ou sexual):</div>
-                        Classificar denúncias de assédio.
-                    </div>
+                <div class="step">
+                    <div class="step-title"><span style="color:var(--etapa2);font-weight:bold">L</span> – Legislações (infringência normativa):</div>
+                    Classificar denúncias de violação de normas e leis.
+                </div>
 
-                    <div class="step">
-                        <div class="step-title"><span class="initial">L</span> – Legislações (infringência normativa):</div>
-                        Classificar denúncias de violação de normas e leis.
-                    </div>
+                <div class="step">
+                    <div class="step-title"><span style="color:var(--etapa2);font-weight:bold">E</span> – Éticas (conduta profissional):</div>
+                    Classificar denúncias sobre conduta profissional.
+                </div>
 
-                    <div class="step">
-                        <div class="step-title"><span class="initial">E</span> – Éticas (conduta profissional):</div>
-                        Classificar denúncias sobre conduta profissional.
-                    </div>
+                <div class="step">
+                    <div class="step-title"><span style="color:var(--etapa2);font-weight:bold">C</span> – Conselhos e Conselheiros:</div>
+                    Classificar denúncias envolvendo conselhos e conselheiros.
+                </div>
 
-                    <div class="step">
-                        <div class="step-title"><span class="initial">C</span> – Conselhos e Conselheiros:</div>
-                        Classificar denúncias envolvendo conselhos e conselheiros.
-                    </div>
+                <div class="step">
+                    <div class="step-title"><span style="color:var(--etapa2);font-weight:bold">O</span> – Outros demandantes (externos ao sistema Cofen/Conselhos):</div>
+                    Classificar denúncias de fontes externas.
+                </div>
 
-                    <div class="step">
-                        <div class="step-title"><span class="initial">O</span> – Outros demandantes (externos ao sistema Cofen/Conselhos):</div>
-                        Classificar denúncias de fontes externas.
-                    </div>
+                <div class="flow-arrow">
+                    <i class="fas fa-arrow-down"></i>
+                </div>
 
-                    <div class="flow-arrow tooltip" title="Denúncias classificadas"></div>
-
-                    <div class="step">
-                        <div class="step-title">Denúncias Classificadas</div>
-                    </div>
+                <div class="step">
+                    <div class="step-title">Denúncias Classificadas</div>
                 </div>
             </div>
         </div>
@@ -556,70 +668,71 @@
         <div class="etapa etapa-3" id="etapa-3">
             <div class="etapa-title" onclick="toggleEtapa(3)">
                 3ª ETAPA: Análise Técnica e Encaminhamentos – Método PROSA
-                <span class="toggle-icon">▼</span>
+                <i class="fas fa-chevron-down toggle-icon"></i>
             </div>
             <div class="content">
                 <div class="step">
                     <div class="step-title">Nesta etapa, as manifestações, incluindo as denúncias classificadas, passam por análise técnica e são direcionadas para as providências adequadas, com atenção aos prazos.</div>
                 </div>
 
-                <div class="flow-arrow tooltip" title="Início da análise"></div>
+                <div class="flow-arrow">
+                    <i class="fas fa-arrow-down"></i>
+                </div>
 
                 <div class="step">
                     <div class="step-title">Início da Análise e Encaminhamentos</div>
                 </div>
 
-                <div class="metodo-title" onclick="toggleMethod('prosa')">
-                    PROSA: Análise Técnica e Encaminhamentos
-                    <span class="toggle-icon">▼</span>
+                <div class="step">
+                    <div class="step-title"><span style="color:var(--etapa3);font-weight:bold">P</span> – Prazos:</div>
+                    - 15 dias: Prazo para análise na Ouvidoria.<br>
+                    - 10 dias: Prazo para resposta do setor competente.<br>
+                    - 5 dias: Prazo para resposta final ao demandante.
                 </div>
 
-                <div id="prosa-method">
-                    <div class="step">
-                        <div class="step-title"><span class="initial">P</span> – Prazos:</div>
-                        - 15 dias: Prazo para análise na Ouvidoria.<br>
-                        - 10 dias: Prazo para resposta do setor competente.<br>
-                        - 5 dias: Prazo para resposta final ao demandante.
-                    </div>
+                <div class="step">
+                    <div class="step-title"><span style="color:var(--etapa3);font-weight:bold">R</span> – Rotina:</div>
+                    Avaliar manifestações ordinárias ou já tratadas em precedentes.
+                </div>
 
-                    <div class="step">
-                        <div class="step-title"><span class="initial">R</span> – Rotina:</div>
-                        Avaliar manifestações ordinárias ou já tratadas em precedentes.
-                    </div>
+                <div class="step">
+                    <div class="step-title"><span style="color:var(--etapa3);font-weight:bold">O</span> – Outros:</div>
+                    Classificar manifestações não padronizadas (Assuntos Diversos e Sensíveis).
+                </div>
 
-                    <div class="step">
-                        <div class="step-title"><span class="initial">O</span> – Outros:</div>
-                        Classificar manifestações não padronizadas (Assuntos Diversos e Sensíveis).
-                    </div>
+                <div class="step">
+                    <div class="step-title"><span style="color:var(--etapa3);font-weight:bold">S</span> – Solicitações / SEI:</div>
+                    Registrar pedidos de providência formal do usuário e acompanhar o processo no SEI.
+                </div>
 
-                    <div class="step">
-                        <div class="step-title"><span class="initial">S</span> – Solicitações / SEI:</div>
-                        Registrar pedidos de providência formal do usuário e acompanhar o processo no SEI.
-                    </div>
+                <div class="step">
+                    <div class="step-title"><span style="color:var(--etapa3);font-weight:bold">A</span> – Anuidades/Inscrições:</div>
+                    Tratar demandas específicas ligadas a inscrição, registro e cadastro do profissional ou questões financeiras.
+                </div>
 
-                    <div class="step">
-                        <div class="step-title"><span class="initial">A</span> – Anuidades/Inscrições:</div>
-                        Tratar demandas específicas ligadas a inscrição, registro e cadastro do profissional ou questões financeiras.
-                    </div>
+                <div class="flow-arrow">
+                    <i class="fas fa-arrow-down"></i>
+                </div>
 
-                    <div class="flow-arrow tooltip" title="Tomada de decisão"></div>
+                <div class="step">
+                    <div class="step-title">Tomada de Decisão e Encaminhamento</div>
+                </div>
 
-                    <div class="step">
-                        <div class="step-title">Tomada de Decisão e Encaminhamento</div>
-                    </div>
+                <div class="flow-arrow">
+                    <i class="fas fa-arrow-down"></i>
+                </div>
 
-                    <div class="flow-arrow tooltip" title="Finalização"></div>
+                <div class="step">
+                    <div class="step-title">Resposta ao Demandante e Finalização</div>
+                    <div>Caso o processo permaneça tramitando internamente para análise e deliberações, o manifestante será informado e a manifestação será reaberta após a finalização da análise pela área competente.</div>
+                </div>
 
-                    <div class="step">
-                        <div class="step-title">Resposta ao Demandante e Finalização</div>
-                        <div>Caso o processo permaneça tramitando internamente para análise e deliberações, o manifestante será informado e a manifestação será reaberta após a finalização da análise pela área competente.</div>
-                    </div>
+                <div class="flow-arrow">
+                    <i class="fas fa-arrow-down"></i>
+                </div>
 
-                    <div class="flow-arrow tooltip" title="Fim do processo"></div>
-
-                    <div class="step">
-                        <div class="step-title">Fim do Processo da Manifestação</div>
-                    </div>
+                <div class="step">
+                    <div class="step-title">Fim do Processo da Manifestação</div>
                 </div>
             </div>
         </div>
@@ -631,8 +744,9 @@
         let currentQuestion = 0;
         let score = 0;
         let userAnswers = [];
+        let quizTimeout;
         
-        // Perguntas do quiz organizadas por dificuldade
+        // Perguntas do quiz
         const quizQuestions = {
             easy: [
                 {
@@ -790,12 +904,10 @@
             score = 0;
             userAnswers = [];
             
-            // Esconder botões de dificuldade e mostrar o quiz selecionado
             document.querySelector('.difficulty-buttons').style.display = 'none';
             document.getElementById(`${difficulty}-quiz`).style.display = 'block';
             document.getElementById('quiz-result').style.display = 'none';
             
-            // Carregar a primeira pergunta
             loadQuestion();
         }
 
@@ -803,17 +915,14 @@
             const quizContainer = document.getElementById(`${currentDifficulty}-quiz`);
             const question = quizQuestions[currentDifficulty][currentQuestion];
             
-            // Atualizar contador
             document.getElementById('question-counter').textContent = `Pergunta ${currentQuestion + 1}/${quizQuestions[currentDifficulty].length}`;
             
-            // Criar HTML da pergunta
             let html = `
                 <div class="question">
                     <div class="question-text">${question.question}</div>
                     <div class="options">
             `;
             
-            // Adicionar opções
             question.options.forEach((option, index) => {
                 const isSelected = userAnswers[currentQuestion] === index;
                 html += `
@@ -826,28 +935,59 @@
             html += `</div></div>`;
             quizContainer.innerHTML = html;
             
-            // Atualizar botões de navegação
             document.getElementById('prev-btn').disabled = currentQuestion === 0;
             document.getElementById('next-btn').textContent = currentQuestion === quizQuestions[currentDifficulty].length - 1 ? 'Finalizar' : 'Próxima';
         }
 
         function selectOption(optionIndex) {
+            // Desabilita todos os cliques durante a animação
             const options = document.querySelectorAll('.option');
-            options.forEach(opt => opt.classList.remove('selected'));
-            options[optionIndex].classList.add('selected');
+            options.forEach(opt => opt.style.pointerEvents = 'none');
             
-            // Salvar resposta do usuário
+            // Remove seleções anteriores
+            options.forEach(opt => {
+                opt.classList.remove('selected', 'correct', 'incorrect');
+            });
+            
+            // Marca a opção selecionada
+            const selectedOption = options[optionIndex];
+            selectedOption.classList.add('selected');
+            
+            // Salva a resposta do usuário
             userAnswers[currentQuestion] = optionIndex;
+            
+            // Verifica se a resposta está correta
+            const correctAnswer = quizQuestions[currentDifficulty][currentQuestion].answer;
+            const isCorrect = optionIndex === correctAnswer;
+            
+            // Marca a resposta correta e a do usuário
+            if (!isCorrect) {
+                selectedOption.classList.add('incorrect');
+                options[correctAnswer].classList.add('correct');
+            } else {
+                selectedOption.classList.add('correct');
+            }
+            
+            // Avança automaticamente para a próxima pergunta após 1.5 segundos
+            clearTimeout(quizTimeout);
+            quizTimeout = setTimeout(() => {
+                options.forEach(opt => opt.style.pointerEvents = 'auto');
+                
+                if (currentQuestion < quizQuestions[currentDifficulty].length - 1) {
+                    currentQuestion++;
+                    loadQuestion();
+                } else {
+                    showResults();
+                }
+            }, 1500);
         }
 
         function nextQuestion() {
-            // Verificar se há resposta selecionada
-            if (userAnswers[currentQuestion] === undefined && currentQuestion < quizQuestions[currentDifficulty].length - 1) {
+            if (userAnswers[currentQuestion] === undefined) {
                 alert('Por favor, selecione uma opção antes de continuar.');
                 return;
             }
             
-            // Avançar para próxima pergunta ou mostrar resultados
             if (currentQuestion < quizQuestions[currentDifficulty].length - 1) {
                 currentQuestion++;
                 loadQuestion();
@@ -864,7 +1004,6 @@
         }
 
         function showResults() {
-            // Calcular pontuação
             score = 0;
             quizQuestions[currentDifficulty].forEach((question, index) => {
                 if (userAnswers[index] === question.answer) {
@@ -872,88 +1011,121 @@
                 }
             });
             
-            // Mostrar resultados
-            const quizContainer = document.getElementById(`${currentDifficulty}-quiz`);
-            const resultContainer = document.getElementById('quiz-result');
-            const feedbackContainer = document.getElementById('feedback');
+            const percentage = Math.round((score / quizQuestions[currentDifficulty].length) * 100);
             
-            quizContainer.style.display = 'none';
-            resultContainer.style.display = 'block';
-            document.getElementById('final-score').textContent = score;
+            // Define o estilo com base no desempenho
+            let resultClass = '';
+            let feedbackText = '';
+            let starsCount = 0;
             
-            // Gerar feedback
-            let feedback = '<h4>Detalhes das respostas:</h4><ul>';
+            if (percentage >= 90) {
+                resultClass = 'excellent';
+                feedbackText = 'Excelente! Domínio total do conteúdo!';
+                starsCount = 5;
+            } else if (percentage >= 70) {
+                resultClass = 'good';
+                feedbackText = 'Muito bom! Você conhece bem o assunto!';
+                starsCount = 4;
+            } else if (percentage >= 50) {
+                resultClass = 'average';
+                feedbackText = 'Bom! Mas pode melhorar!';
+                starsCount = 3;
+            } else {
+                resultClass = 'poor';
+                feedbackText = 'Continue estudando! Você vai melhorar!';
+                starsCount = 2;
+            }
+            
+            // Aplica as classes
+            document.getElementById('quiz-result').className = `result-container ${resultClass}`;
+            document.getElementById('result-feedback').textContent = feedbackText;
+            
+            // Cria as estrelas
+            let starsHtml = '';
+            for (let i = 0; i < 5; i++) {
+                starsHtml += i < starsCount ? '<i class="fas fa-star"></i>' : '<i class="far fa-star"></i>';
+            }
+            document.getElementById('result-stars').innerHTML = starsHtml;
+            
+            // Animação do percentual
+            const resultCircle = document.getElementById('result-circle');
+            resultCircle.style.background = `conic-gradient(var(--cor-resultado) ${percentage}%, #e0e0e0 ${percentage}%)`;
+            
+            let currentPercent = 0;
+            const percentElement = document.getElementById('result-percent');
+            const interval = setInterval(() => {
+                if (currentPercent >= percentage) {
+                    clearInterval(interval);
+                    percentElement.classList.add('pulse');
+                } else {
+                    currentPercent++;
+                    percentElement.textContent = `${currentPercent}%`;
+                }
+            }, 20);
+            
+            // Gera feedback detalhado
+            let feedback = '<h4>Detalhes das respostas:</h4>';
             quizQuestions[currentDifficulty].forEach((question, index) => {
                 const isCorrect = userAnswers[index] === question.answer;
+                const userAnswer = question.options[userAnswers[index]];
+                const correctAnswer = question.options[question.answer];
+                
                 feedback += `
-                    <li>
-                        <strong>Pergunta ${index + 1}:</strong> ${isCorrect ? '✓' : '✗'}
-                        ${!isCorrect ? `<br><em>Resposta correta: ${question.options[question.answer]}</em>` : ''}
-                        <br><em>Explicação:</em> ${question.explanation}
-                    </li>
+                    <div class="feedback-item">
+                        <div class="feedback-question">
+                            ${question.question}
+                        </div>
+                        ${isCorrect ? '<i class="fas fa-check correct-icon"></i>' : '<i class="fas fa-times incorrect-icon"></i>'}
+                        <div class="feedback-answer">Sua resposta: ${userAnswer}</div>
+                        ${!isCorrect ? `<div class="feedback-answer">Resposta correta: ${correctAnswer}</div>` : ''}
+                        <div class="feedback-explanation">${question.explanation}</div>
+                    </div>
                 `;
             });
-            feedback += '</ul>';
-            feedbackContainer.innerHTML = feedback;
             
-            // Rolar para o resultado
-            resultContainer.scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('feedback').innerHTML = feedback;
+            
+            document.getElementById('quiz-result').style.display = 'block';
+            document.getElementById('quiz-result').scrollIntoView({ behavior: 'smooth' });
         }
 
         function restartQuiz() {
-            // Resetar quiz
             document.getElementById('quiz-result').style.display = 'none';
             document.querySelector('.difficulty-buttons').style.display = 'flex';
             document.getElementById(`${currentDifficulty}-quiz`).style.display = 'none';
             currentDifficulty = '';
         }
 
-        // Funções originais do aplicativo
+        // Funções para as etapas
         function toggleEtapa(num) {
             const etapa = document.getElementById(`etapa-${num}`);
             const content = etapa.querySelector('.content');
             const icon = etapa.querySelector('.toggle-icon');
-            if (content.style.display === 'none') {
+            if (content.style.display === 'none' || !content.style.display) {
                 content.style.display = 'block';
-                icon.textContent = '▼';
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
                 updateProgress();
             } else {
                 content.style.display = 'none';
-                icon.textContent = '▶';
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
                 updateProgress();
             }
         }
 
-        function toggleMethod(method) {
-            const methodDiv = document.getElementById(`${method}-method`);
-            const icon = document.querySelector(`.metodo-title[onclick="toggleMethod('${method}')"] .toggle-icon`);
-            if (methodDiv.style.display === 'none') {
-                methodDiv.style.display = 'block';
-                icon.textContent = '▼';
-            } else {
-                methodDiv.style.display = 'none';
-                icon.textContent = '▶';
-            }
-            updateProgress();
-        }
-
         function showEtapa(num) {
-            // Esconder todas as etapas primeiro
             document.querySelectorAll('.etapa').forEach(etapa => {
                 etapa.style.display = 'none';
             });
             document.getElementById('quiz-section').style.display = 'none';
 
-            // Mostrar apenas a etapa selecionada
             const etapa = document.getElementById(`etapa-${num}`);
             etapa.style.display = 'block';
-
-            // Expandir conteúdo
             const content = etapa.querySelector('.content');
             content.style.display = 'block';
-            etapa.querySelector('.toggle-icon').textContent = '▼';
-
-            // Rolar para a etapa
+            etapa.querySelector('.toggle-icon').classList.remove('fa-chevron-down');
+            etapa.querySelector('.toggle-icon').classList.add('fa-chevron-up');
             etapa.scrollIntoView({ behavior: 'smooth' });
 
             updateProgress();
@@ -964,7 +1136,8 @@
                 etapa.style.display = 'block';
                 const content = etapa.querySelector('.content');
                 content.style.display = 'block';
-                etapa.querySelector('.toggle-icon').textContent = '▼';
+                etapa.querySelector('.toggle-icon').classList.remove('fa-chevron-down');
+                etapa.querySelector('.toggle-icon').classList.add('fa-chevron-up');
             });
             document.getElementById('quiz-section').style.display = 'none';
 
@@ -976,7 +1149,7 @@
             let visibleSteps = 0;
 
             document.querySelectorAll('.step').forEach(step => {
-                if (step.offsetParent !== null) { // Verifica se o elemento está visível
+                if (step.offsetParent !== null) {
                     visibleSteps++;
                 }
             });
@@ -987,39 +1160,26 @@
 
         // Inicialização
         document.addEventListener('DOMContentLoaded', function() {
-            // Configurar tooltips
-            document.querySelectorAll('.tooltip').forEach(tooltip => {
-                const text = tooltip.getAttribute('title');
-                if (text) {
-                    tooltip.removeAttribute('title');
-                    const tooltipSpan = document.createElement('span');
-                    tooltipSpan.className = 'tooltiptext';
-                    tooltipSpan.textContent = text;
-                    tooltip.appendChild(tooltipSpan);
-                }
-            });
-
-            // Expandir tudo inicialmente
-            showAll();
-
             // Configurar clique no cabeçalho principal
             document.getElementById('main-header').addEventListener('click', function() {
                 const icon = this.querySelector('.toggle-icon');
-                if (icon.textContent === '▼') {
+                if (icon.classList.contains('fa-chevron-up')) {
                     document.querySelectorAll('.content').forEach(content => {
                         content.style.display = 'none';
                     });
                     document.getElementById('quiz-section').style.display = 'none';
                     document.querySelectorAll('.toggle-icon').forEach(i => {
-                        if (i !== icon) i.textContent = '▶';
+                        i.classList.remove('fa-chevron-up');
+                        i.classList.add('fa-chevron-down');
                     });
-                    icon.textContent = '▶';
                 } else {
                     showAll();
-                    icon.textContent = '▼';
                 }
                 updateProgress();
             });
+
+            // Expandir tudo inicialmente
+            showAll();
         });
     </script>
 </body>
