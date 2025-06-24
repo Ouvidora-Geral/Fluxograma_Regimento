@@ -15,6 +15,7 @@
             --texto: #2c3e50;
             --correto: #2ecc71;
             --incorreto: #e74c3c;
+            --cor-resultado: #27ae60;
         }
         * {
             box-sizing: border-box;
@@ -35,19 +36,41 @@
             border-radius: 10px;
             box-shadow: 0 2px 15px rgba(0,0,0,0.1);
             overflow: hidden;
+            position: relative;
         }
-        .header {
+        /* NOVO CABEÇALHO */
+        .app-header {
             background: linear-gradient(135deg, #0056b3, #003366);
             color: white;
             padding: 20px;
             text-align: center;
-            font-size: 1.4rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .app-header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .app-header p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .header {
+            background: linear-gradient(135deg, #004494, #002b4d);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.3rem;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s;
         }
         .header:hover {
-            background: linear-gradient(135deg, #004494, #002b4d);
+            background: linear-gradient(135deg, #003d82, #002340);
         }
         .progress-bar {
             height: 8px;
@@ -280,6 +303,22 @@
             background: #cccccc;
             cursor: not-allowed;
         }
+        .restart-btn {
+            padding: 12px 25px;
+            background: #0056b3;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .restart-btn:hover {
+            background: #004494;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
         
         /* ESTILOS ATUALIZADOS PARA RESULTADO */
         .result-container {
@@ -351,7 +390,7 @@
             color: #ffc107;
         }
         
-        /* ESTILOS ATUALIZADOS PARA FEEDBACK (ÍCONES À DIREITA) */
+        /* ESTILOS ATUALIZADOS PARA FEEDBACK */
         .feedback-item {
             margin-bottom: 20px;
             padding: 15px 20px;
@@ -366,7 +405,7 @@
             font-weight: bold;
             margin-bottom: 12px;
             color: #2c3e50;
-            padding-right: 40px; /* Espaço para o ícone à direita */
+            padding-right: 40px;
         }
         .correct-icon, .incorrect-icon {
             position: absolute;
@@ -461,14 +500,52 @@
             animation: pulse 1.5s infinite;
         }
         
+        /* NOVO RODAPÉ */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #f1f1f1;
+            font-size: 0.9rem;
+            color: #666;
+            border-top: 1px solid #ddd;
+        }
+        footer p {
+            margin: 5px 0;
+        }
+        footer i {
+            margin-right: 5px;
+        }
+        
         @media (max-width: 600px) {
-            .header { font-size: 1.2rem; padding: 15px; }
-            .nav-btn { padding: 8px 12px; font-size: 0.9rem; }
-            .etapa-title { font-size: 1.1rem; }
-            .difficulty-buttons { flex-direction: column; }
-            .difficulty-btn { width: 100%; }
-            .question-text { font-size: 1rem; }
-            .option { padding: 10px; }
+            .app-header h1 {
+                font-size: 1.5rem;
+            }
+            .app-header p {
+                font-size: 0.9rem;
+            }
+            .header { 
+                font-size: 1.2rem; 
+                padding: 12px;
+            }
+            .nav-btn { 
+                padding: 8px 12px; 
+                font-size: 0.9rem; 
+            }
+            .etapa-title { 
+                font-size: 1.1rem; 
+            }
+            .difficulty-buttons { 
+                flex-direction: column; 
+            }
+            .difficulty-btn { 
+                width: 100%; 
+            }
+            .question-text { 
+                font-size: 1rem; 
+            }
+            .option { 
+                padding: 10px; 
+            }
             .result-visual {
                 width: 180px;
                 height: 180px;
@@ -498,8 +575,14 @@
 </head>
 <body>
     <div class="container">
+        <!-- NOVO CABEÇALHO -->
+        <div class="app-header">
+            <h1><i class="fas fa-headset"></i> Guia do Ouvidor</h1>
+            <p>Minuta do Regimento Nacional das Ouvidorias - 2025</p>
+        </div>
+
         <div class="header" id="main-header">
-            FLUXOS E ROTINAS DIÁRIAS DA OUVIDORIA
+            FLUXOGRAMA DAS MANIFESTAÇÕES DA OUVIDORIA
             <i class="fas fa-chevron-down toggle-icon"></i>
         </div>
 
@@ -736,6 +819,13 @@
                 </div>
             </div>
         </div>
+
+        <!-- NOVO RODAPÉ -->
+        <footer>
+            <p>Desenvolvido por Eduardo Fernando de Souza - Ouvidor-Geral do Cofen</p>
+            <p><i class="fas fa-envelope"></i> eduardo.souza@cofen.gov.br | Versão 2.0.0. Junho 2025</p>
+            <p>Todos os direitos reservados</p>
+        </footer>
     </div>
 
     <script>
