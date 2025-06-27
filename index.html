@@ -836,6 +836,15 @@
         let userAnswers = [];
         let quizTimeout;
         
+        // Função para embaralhar array (Fisher-Yates algorithm)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
         // Perguntas do quiz
         const quizQuestions = {
             easy: [
@@ -993,6 +1002,18 @@
             currentQuestion = 0;
             score = 0;
             userAnswers = [];
+            
+            // Embaralha as perguntas para a dificuldade selecionada
+            quizQuestions[currentDifficulty] = shuffleArray([...quizQuestions[currentDifficulty]]);
+            
+            // Embaralha as opções de cada pergunta
+            quizQuestions[currentDifficulty].forEach(question => {
+                // Salva a resposta correta antes de embaralhar
+                const correctAnswer = question.options[question.answer];
+                question.options = shuffleArray([...question.options]);
+                // Atualiza o índice da resposta correta após o embaralhamento
+                question.answer = question.options.indexOf(correctAnswer);
+            });
             
             document.querySelector('.difficulty-buttons').style.display = 'none';
             document.getElementById(`${difficulty}-quiz`).style.display = 'block';
