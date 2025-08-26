@@ -47,7 +47,6 @@
             transform: translateY(-5px);
             box-shadow: 0 12px 40px rgba(0,0,0,0.15);
         }
-        
         /* Cabeçalho Atualizado */
         .app-header {
             background: linear-gradient(135deg, #0056b3, #003366);
@@ -87,7 +86,6 @@
             z-index: 2;
             font-weight: 300;
         }
-        
         /* Header com efeito de onda */
         .header {
             background: linear-gradient(135deg, #004494, #002b4d);
@@ -117,7 +115,6 @@
         .header:hover {
             background: linear-gradient(135deg, #003d82, #002340);
         }
-        
         /* Barra de progresso com efeito gradiente */
         .progress-bar {
             height: 10px;
@@ -148,7 +145,6 @@
             0% { background-position: -200% 0; }
             100% { background-position: 200% 0; }
         }
-        
         /* Botões com efeito 3D */
         .nav-buttons {
             display: flex;
@@ -196,7 +192,6 @@
         .nav-btn:active {
             transform: translateY(-2px) scale(1.02);
         }
-        
         /* Etapas com efeito de expansão */
         .etapa {
             margin: 20px;
@@ -214,7 +209,6 @@
         .etapa-1 { border-color: var(--etapa1); }
         .etapa-2 { border-color: var(--etapa2); }
         .etapa-3 { border-color: var(--etapa3); }
-        
         /* Título da etapa com efeito de clique */
         .etapa-title {
             padding: 18px 20px;
@@ -242,7 +236,6 @@
             color: var(--etapa3);
             background: linear-gradient(to right, rgba(39,174,96,0.05), white);
         }
-        
         /* Conteúdo com animação de entrada */
         .content {
             padding: 0 20px 20px;
@@ -253,7 +246,6 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
         /* Passos com efeito de flutuação */
         .step {
             background: white;
@@ -297,14 +289,12 @@
             border-color: var(--etapa3);
             background: linear-gradient(to right, rgba(39,174,96,0.03), white);
         }
-        
         .step-title {
             font-weight: bold;
             margin-bottom: 10px;
             color: var(--texto);
             font-size: 1.1rem;
         }
-        
         /* Setas animadas */
         .flow-arrow {
             text-align: center;
@@ -317,7 +307,6 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-8px); }
         }
-        
         /* Links com efeito de expansão */
         .etapa-link {
             display: inline-block;
@@ -349,7 +338,6 @@
             transform: translateY(-3px) scale(1.05);
             box-shadow: 0 5px 15px rgba(0,86,179,0.3);
         }
-        
         /* Seção do Quiz */
         .quiz-section {
             padding: 25px;
@@ -379,7 +367,6 @@
             background: linear-gradient(90deg, var(--etapa1), var(--etapa2), var(--etapa3));
             border-radius: 2px;
         }
-        
         /* Botões de dificuldade */
         .difficulty-buttons {
             display: flex;
@@ -418,7 +405,6 @@
             transform: translateY(-5px) scale(1.05);
             box-shadow: 0 8px 25px rgba(0,0,0,0.2);
         }
-        
         /* Perguntas e opções */
         .quiz-container {
             display: none;
@@ -483,7 +469,6 @@
             70% { box-shadow: 0 0 0 15px rgba(231, 76, 60, 0); }
             100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); }
         }
-        
         /* Navegação do quiz */
         .quiz-nav {
             display: flex;
@@ -515,7 +500,6 @@
             transform: none;
             box-shadow: none;
         }
-        
         /* Resultados com efeitos visuais */
         .result-container {
             text-align: center;
@@ -590,7 +574,6 @@
             color: #ffc107;
             text-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        
         /* Feedback detalhado */
         .feedback-item {
             margin-bottom: 25px;
@@ -660,7 +643,6 @@
             border-left: 4px solid #0056b3;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
-        
         /* Botão de reiniciar */
         .restart-btn {
             padding: 15px 30px;
@@ -691,7 +673,6 @@
             transform: translateY(-5px) scale(1.05);
             box-shadow: 0 12px 35px rgba(0,86,179,0.4);
         }
-        
         /* Rodapé atualizado */
         footer {
             text-align: center;
@@ -709,14 +690,12 @@
             margin-right: 8px;
             color: #0056b3;
         }
-        
         /* Animações adicionais */
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
             100% { transform: translateY(0px); }
         }
-        
         .pulse {
             animation: pulse 2s infinite;
         }
@@ -725,7 +704,6 @@
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
-        
         /* Responsividade */
         @media (max-width: 768px) {
             .container {
@@ -800,7 +778,6 @@
                 padding: 20px;
             }
         }
-        
         @media (max-width: 480px) {
             .app-header h1 {
                 font-size: 1.5rem;
@@ -836,28 +813,23 @@
             <h1><i class="fas fa-headset"></i> Guia do Ouvidor</h1>
             <p>Sistema Cofen/Conselhos Regionais de Enfermagem</p>
         </div>
-
         <div class="header" id="main-header">
             NORMAS E ROTINAS DA OUVIDORIA
             <i class="fas fa-chevron-down toggle-icon"></i>
         </div>
-
         <div class="progress-bar">
             <div class="progress" id="progress"></div>
         </div>
-
         <div class="nav-buttons">
             <button class="nav-btn" onclick="showEtapa(1)">1ª Etapa</button>
             <button class="nav-btn" onclick="showEtapa(2)">2ª Etapa</button>
             <button class="nav-btn" onclick="showEtapa(3)">3ª Etapa</button>
             <button class="nav-btn" onclick="showQuizSection()">Quiz Interativo</button>
         </div>
-
         <!-- Seção do Quiz Funcional -->
         <div class="quiz-section" id="quiz-section">
             <h2 class="quiz-title">Quiz da Ouvidoria</h2>
             <p style="text-align:center;margin-bottom:20px;color:#555;">Teste seus conhecimentos sobre os fluxos da Ouvidoria</p>
-            
             <div class="difficulty-buttons">
                 <button class="difficulty-btn easy-btn" onclick="startQuiz('easy')">
                     <i class="fas fa-seedling"></i> Fácil
@@ -869,11 +841,9 @@
                     <i class="fas fa-mountain"></i> Difícil
                 </button>
             </div>
-
             <div id="easy-quiz" class="quiz-container"></div>
             <div id="medium-quiz" class="quiz-container"></div>
             <div id="hard-quiz" class="quiz-container"></div>
-
             <div class="quiz-nav">
                 <button id="prev-btn" class="quiz-btn" onclick="prevQuestion()" disabled>
                     <i class="fas fa-arrow-left"></i> Anterior
@@ -883,11 +853,9 @@
                     Próxima <i class="fas fa-arrow-right"></i>
                 </button>
             </div>
-
             <!-- Seção de Resultado -->
             <div id="quiz-result" class="result-container">
                 <h3 class="result-title">Seu Desempenho</h3>
-                
                 <div class="result-visual">
                     <div class="result-circle" id="result-circle">
                         <div class="result-inner">
@@ -896,19 +864,14 @@
                         </div>
                     </div>
                 </div>
-                
                 <div class="result-feedback" id="result-feedback"></div>
-                
                 <div class="result-stars" id="result-stars"></div>
-                
                 <div id="feedback"></div>
-                
                 <button class="restart-btn" onclick="restartQuiz()">
                     <i class="fas fa-redo"></i> Fazer Novamente
                 </button>
             </div>
         </div>
-
         <!-- 1ª ETAPA -->
         <div class="etapa etapa-1" id="etapa-1">
             <div class="etapa-title" onclick="toggleEtapa(1)">
@@ -917,47 +880,49 @@
             </div>
             <div class="content">
                 <div class="step">
-                    <div class="step-title">Esta etapa é crucial para a triagem inicial das manifestações, categorizando-as e priorizando as ações.</div>
+                    <div class="step-title">INÍCIO DO EXPEDIENTE</div>
                 </div>
-
                 <div class="flow-arrow">
                     <i class="fas fa-arrow-down"></i>
                 </div>
-
                 <div class="step">
-                    <div class="step-title">Início do Expediente:</div>
+                    <div class="step-title">ACESSAR O SISTEMA DE OUVIDORIA DO COFEN</div>
                 </div>
-
+                <div class="flow-arrow">
+                    <i class="fas fa-arrow-down"></i>
+                </div>
+                <div class="step">
+                    <div class="step-title">INFORMACÕES</div>
+                    Monitorar novos ATOS NORMATIVOS e ADMINISTRATIVOS do Sistema Cofen/Conselhos Regionais
+                </div>
+                <div class="flow-arrow">
+                    <i class="fas fa-arrow-down"></i>
+                </div>
+                <div class="step">
+                    <div class="step-title">ACOMPANHAMENTO DAS MANIFESTAÇÕES</div>
+                    Acompanhar o STATUS, os TRÂMITES e os PRAZOS das Manifestações Não Finalizadas.
+                </div>
+                <div class="flow-arrow">
+                    <i class="fas fa-arrow-down"></i>
+                </div>
                 <div class="step">
                     <div class="step-title"><span style="color:var(--etapa1);font-weight:bold">D</span> – Denúncias:</div>
-                    Identificar e separar manifestações que relatam irregularidades.
+                    Analisar e Classificar
                     <div class="flow-arrow">
                         <i class="fas fa-arrow-down"></i>
                     </div>
                     <div class="etapa-link" onclick="showEtapa(2)">(Para Denúncias) Seguir para a 2ª ETAPA – Classificação das Denúncias (Método JALECO)</div>
                 </div>
-
                 <div class="step">
                     <div class="step-title"><span style="color:var(--etapa1);font-weight:bold">I</span> – Informações:</div>
                     Levantar e atualizar atos normativos e legislações vigentes.
                 </div>
-
                 <div class="step">
                     <div class="step-title"><span style="color:var(--etapa1);font-weight:bold">A</span> – Acompanhamento:</div>
                     Monitorar continuamente as manifestações em aberto (tramitando, encaminhadas, respondidas e registradas no SEI).
                 </div>
-
-                <div class="flow-arrow">
-                    <i class="fas fa-arrow-down"></i>
-                </div>
-
-                <div class="step">
-                    <div class="step-title">Fim da Triagem Diária</div>
-                    <div>(Para Assuntos de Rotina)</div>
-                </div>
             </div>
         </div>
-
         <!-- 2ª ETAPA -->
         <div class="etapa etapa-2" id="etapa-2">
             <div class="etapa-title" onclick="toggleEtapa(2)">
@@ -966,57 +931,88 @@
             </div>
             <div class="content">
                 <div class="step">
-                    <div class="step-title">Após a triagem inicial das denúncias, o método JALECO permite uma classificação estratégica para direcionar o tratamento especializado.</div>
+                    <div class="step-title">2° Etapa - Classificar as Denuncias "Método JALECO"</div>
                 </div>
-
                 <div class="flow-arrow">
                     <i class="fas fa-arrow-down"></i>
                 </div>
-
                 <div class="step">
-                    <div class="step-title">Início da Classificação de Denúncias</div>
+                    <div class="step-title">DENÚNCIAS</div>
+                    Analisar e Classificar
                 </div>
-
+                <div class="flow-arrow">
+                    <i class="fas fa-arrow-down"></i>
+                </div>
                 <div class="step">
                     <div class="step-title"><span style="color:var(--etapa2);font-weight:bold">J</span> – Judiciais/Jurídicas:</div>
                     Classificar denúncias relacionadas a questões legais e jurídicas.
                 </div>
-
                 <div class="step">
                     <div class="step-title"><span style="color:var(--etapa2);font-weight:bold">A</span> – Assédio (moral ou sexual):</div>
                     Classificar denúncias de assédio.
                 </div>
-
                 <div class="step">
                     <div class="step-title"><span style="color:var(--etapa2);font-weight:bold">L</span> – Legislações (infringência normativa):</div>
                     Classificar denúncias de violação de normas e leis.
                 </div>
-
                 <div class="step">
                     <div class="step-title"><span style="color:var(--etapa2);font-weight:bold">E</span> – Éticas (conduta profissional):</div>
                     Classificar denúncias sobre conduta profissional.
                 </div>
-
                 <div class="step">
                     <div class="step-title"><span style="color:var(--etapa2);font-weight:bold">C</span> – Conselhos e Conselheiros:</div>
                     Classificar denúncias envolvendo conselhos e conselheiros.
                 </div>
-
                 <div class="step">
                     <div class="step-title"><span style="color:var(--etapa2);font-weight:bold">O</span> – Outros demandantes (externos ao sistema Cofen/Conselhos):</div>
                     Classificar denúncias de fontes externas.
                 </div>
-
                 <div class="flow-arrow">
                     <i class="fas fa-arrow-down"></i>
                 </div>
-
                 <div class="step">
-                    <div class="step-title">Denúncias Classificadas</div>
+                    <div class="step-title">Parecer- Conselheiro(a)/Técnico</div>
+                </div>
+                <div class="flow-arrow">
+                    <i class="fas fa-arrow-down"></i>
+                </div>
+                <div class="step">
+                    <div class="step-title">Resoluções</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Notas (Técnicas/Informativas)</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Decisões</div>
+                </div>
+                <div class="flow-arrow">
+                    <i class="fas fa-arrow-down"></i>
+                </div>
+                <div class="step">
+                    <div class="step-title">POSSUI ELEMENTOS MÍNIMOS PARA HABILITAÇÃO ENCAMINHAMENTO?</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Sim</div>
+                    <div class="flow-arrow">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+                    <div class="step-title">Abertura de SEI/PAD</div>
+                    <div class="flow-arrow">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+                    <div class="step-title">Encaminhamento para a Unidade de Apuração.</div>
+                    (Gabinete da Presidência, Departamento, Setor, Comissão ou Autoridade competente para realizar o juízo de admissibilidade).
+                </div>
+                <div class="step">
+                    <div class="step-title">Não</div>
+                    <div class="flow-arrow">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+                    <div class="step-title">SOLICITAÇÃO DE INFORMAÇÕES COMPLENTARES</div>
+                    (item II do Art. 21º deste Regimento)
                 </div>
             </div>
         </div>
-
         <!-- 3ª ETAPA -->
         <div class="etapa etapa-3" id="etapa-3">
             <div class="etapa-title" onclick="toggleEtapa(3)">
@@ -1025,71 +1021,84 @@
             </div>
             <div class="content">
                 <div class="step">
-                    <div class="step-title">Nesta etapa, as manifestações, incluindo as denúncias classificadas, passam por análise técnica e são direcionadas para as providências adequadas, com atenção aos prazos.</div>
+                    <div class="step-title">3ª ETAPA Aplicar o Método"PROSA"</div>
                 </div>
-
                 <div class="flow-arrow">
                     <i class="fas fa-arrow-down"></i>
                 </div>
-
                 <div class="step">
-                    <div class="step-title">Início da Análise e Encaminhamentos</div>
+                    <div class="step-title">VERIFIQUE SE HÁ NOVAS DEMANDAS: Judiciais ou Assuntos Sensíveis?</div>
                 </div>
-
                 <div class="step">
-                    <div class="step-title"><span style="color:var(--etapa3);font-weight:bold">P</span> – Prazos:</div>
+                    <div class="step-title">Sim</div>
+                    <div class="flow-arrow">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+                    <div class="step-title">ENCAMINHE ao Gabinete da Presidência(SEI/PAD)</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Não</div>
+                    <div class="flow-arrow">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+                    <div class="step-title">PRAZOS</div>
                     - 15 dias: Prazo para análise na Ouvidoria.<br>
                     - 10 dias: Prazo para resposta do setor competente.<br>
                     - 5 dias: Prazo para resposta final ao demandante.
                 </div>
-
                 <div class="step">
-                    <div class="step-title"><span style="color:var(--etapa3);font-weight:bold">R</span> – Rotina:</div>
+                    <div class="step-title">ROTINAS</div>
                     Avaliar manifestações ordinárias ou já tratadas em precedentes.
                 </div>
-
                 <div class="step">
-                    <div class="step-title"><span style="color:var(--etapa3);font-weight:bold">O</span> – Outros:</div>
-                    Classificar manifestações não padronizadas (Assuntos Diversos e Sensíveis).
-                </div>
-
-                <div class="step">
-                    <div class="step-title"><span style="color:var(--etapa3);font-weight:bold">S</span> – Solicitações / SEI:</div>
+                    <div class="step-title">SOLICITAÇÕES/ SEI/PAD</div>
                     Registrar pedidos de providência formal do usuário e acompanhar o processo no SEI.
                 </div>
-
                 <div class="step">
-                    <div class="step-title"><span style="color:var(--etapa3);font-weight:bold">A</span> – Anuidades/Inscrições:</div>
+                    <div class="step-title">ASSUNTOS ADMINISTRATIVOS</div>
                     Tratar demandas específicas ligadas a inscrição, registro e cadastro do profissional ou questões financeiras.
                 </div>
-
                 <div class="flow-arrow">
                     <i class="fas fa-arrow-down"></i>
                 </div>
-
                 <div class="step">
-                    <div class="step-title">Tomada de Decisão e Encaminhamento</div>
+                    <div class="step-title">O manifestante deve ser informado sobre o número do protocolo(SEI ou PAD) para acompanhamento. A manifestação será finalizada na Ouvidoria e reaberta após a conclusão da análise pela área competente.</div>
                 </div>
-
                 <div class="flow-arrow">
                     <i class="fas fa-arrow-down"></i>
                 </div>
-
                 <div class="step">
-                    <div class="step-title">Resposta ao Demandante e Finalização</div>
-                    <div>Caso o processo permaneça tramitando internamente para análise e deliberações, o manifestante será informado e a manifestação será reaberta após a finalização da análise pela área competente.</div>
+                    <div class="step-title">FINALIZACÃO DA(S) MANIFESTAÇÃO(ÕES)</div>
+                    <div>Após a conclusão do tratamento pela área competente, a manifestação será reaberta para o encaminhamento da Resposta Oficial, sendo, em seguida, finalizada no Sistema.</div>
                 </div>
-
                 <div class="flow-arrow">
                     <i class="fas fa-arrow-down"></i>
                 </div>
-
                 <div class="step">
-                    <div class="step-title">Fim do Processo da Manifestação</div>
+                    <div class="step-title">ANTES DO TÉRMINO DO EXPEDIENTE</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Sim</div>
+                    <div class="flow-arrow">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+                    <div class="step-title">RESPOSTA OUVIDORIA</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Não</div>
+                    <div class="flow-arrow">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+                    <div class="step-title">ENCAMINHAMENTO AO SETOR RESPONSÁVEL</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">ORIENTAÇÕES/ OUTRAS DEMANDAS</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">Avalie com CAUTELA a relevância e o impacto social de cada Informação.</div>
                 </div>
             </div>
         </div>
-
         <!-- Rodapé Atualizado -->
         <footer>
             <p><i class="fas fa-code"></i> Desenvolvido por Eduardo Fernando de Souza - Ouvidor-Geral do Cofen</p>
@@ -1097,7 +1106,6 @@
             <p><i class="fas fa-copyright"></i> Todos os direitos reservados</p>
         </footer>
     </div>
-
     <script>
         // Variáveis do quiz
         let currentDifficulty = '';
@@ -1105,7 +1113,6 @@
         let score = 0;
         let userAnswers = [];
         let quizTimeout;
-        
         // Função para embaralhar array (Fisher-Yates algorithm)
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
@@ -1114,7 +1121,6 @@
             }
             return array;
         }
-
         // Perguntas do quiz
         const quizQuestions = {
             easy: [
@@ -1256,7 +1262,6 @@
                 }
             ]
         };
-
         // Funções do quiz
         function showQuizSection() {
             document.querySelectorAll('.etapa').forEach(etapa => {
@@ -1266,16 +1271,13 @@
             document.querySelector('.progress').style.width = '0%';
             document.getElementById('main-header').scrollIntoView({ behavior: 'smooth' });
         }
-
         function startQuiz(difficulty) {
             currentDifficulty = difficulty;
             currentQuestion = 0;
             score = 0;
             userAnswers = [];
-            
             // Embaralha as perguntas para a dificuldade selecionada
             quizQuestions[currentDifficulty] = shuffleArray([...quizQuestions[currentDifficulty]]);
-            
             // Embaralha as opções de cada pergunta
             quizQuestions[currentDifficulty].forEach(question => {
                 // Salva a resposta correta antes de embaralhar
@@ -1284,26 +1286,20 @@
                 // Atualiza o índice da resposta correta após o embaralhamento
                 question.answer = question.options.indexOf(correctAnswer);
             });
-            
             document.querySelector('.difficulty-buttons').style.display = 'none';
             document.getElementById(`${difficulty}-quiz`).style.display = 'block';
             document.getElementById('quiz-result').style.display = 'none';
-            
             loadQuestion();
         }
-
         function loadQuestion() {
             const quizContainer = document.getElementById(`${currentDifficulty}-quiz`);
             const question = quizQuestions[currentDifficulty][currentQuestion];
-            
             document.getElementById('question-counter').textContent = `Pergunta ${currentQuestion + 1}/${quizQuestions[currentDifficulty].length}`;
-            
             let html = `
                 <div class="question">
                     <div class="question-text">${question.question}</div>
                     <div class="options">
             `;
-            
             question.options.forEach((option, index) => {
                 const isSelected = userAnswers[currentQuestion] === index;
                 html += `
@@ -1312,35 +1308,27 @@
                     </div>
                 `;
             });
-            
             html += `</div></div>`;
             quizContainer.innerHTML = html;
-            
             document.getElementById('prev-btn').disabled = currentQuestion === 0;
             document.getElementById('next-btn').textContent = currentQuestion === quizQuestions[currentDifficulty].length - 1 ? 'Finalizar' : 'Próxima';
         }
-
         function selectOption(optionIndex) {
             // Desabilita todos os cliques durante a animação
             const options = document.querySelectorAll('.option');
             options.forEach(opt => opt.style.pointerEvents = 'none');
-            
             // Remove seleções anteriores
             options.forEach(opt => {
                 opt.classList.remove('selected', 'correct', 'incorrect');
             });
-            
             // Marca a opção selecionada
             const selectedOption = options[optionIndex];
             selectedOption.classList.add('selected');
-            
             // Salva a resposta do usuário
             userAnswers[currentQuestion] = optionIndex;
-            
             // Verifica se a resposta está correta
             const correctAnswer = quizQuestions[currentDifficulty][currentQuestion].answer;
             const isCorrect = optionIndex === correctAnswer;
-            
             // Marca a resposta correta e a do usuário
             if (!isCorrect) {
                 selectedOption.classList.add('incorrect');
@@ -1348,12 +1336,10 @@
             } else {
                 selectedOption.classList.add('correct');
             }
-            
             // Avança automaticamente para a próxima pergunta após 1.5 segundos
             clearTimeout(quizTimeout);
             quizTimeout = setTimeout(() => {
                 options.forEach(opt => opt.style.pointerEvents = 'auto');
-                
                 if (currentQuestion < quizQuestions[currentDifficulty].length - 1) {
                     currentQuestion++;
                     loadQuestion();
@@ -1362,13 +1348,11 @@
                 }
             }, 1500);
         }
-
         function nextQuestion() {
             if (userAnswers[currentQuestion] === undefined) {
                 alert('Por favor, selecione uma opção antes de continuar.');
                 return;
             }
-            
             if (currentQuestion < quizQuestions[currentDifficulty].length - 1) {
                 currentQuestion++;
                 loadQuestion();
@@ -1376,14 +1360,12 @@
                 showResults();
             }
         }
-
         function prevQuestion() {
             if (currentQuestion > 0) {
                 currentQuestion--;
                 loadQuestion();
             }
         }
-
         function showResults() {
             score = 0;
             quizQuestions[currentDifficulty].forEach((question, index) => {
@@ -1391,14 +1373,11 @@
                     score++;
                 }
             });
-            
             const percentage = Math.round((score / quizQuestions[currentDifficulty].length) * 100);
-            
             // Define o estilo com base no desempenho
             let resultClass = '';
             let feedbackText = '';
             let starsCount = 0;
-            
             if (percentage >= 90) {
                 resultClass = 'excellent';
                 feedbackText = 'Excelente! Domínio total do conteúdo!';
@@ -1416,22 +1395,18 @@
                 feedbackText = 'Continue estudando! Você vai melhorar!';
                 starsCount = 2;
             }
-            
             // Aplica as classes
             document.getElementById('quiz-result').className = `result-container ${resultClass}`;
             document.getElementById('result-feedback').textContent = feedbackText;
-            
             // Cria as estrelas
             let starsHtml = '';
             for (let i = 0; i < 5; i++) {
                 starsHtml += i < starsCount ? '<i class="fas fa-star"></i>' : '<i class="far fa-star"></i>';
             }
             document.getElementById('result-stars').innerHTML = starsHtml;
-            
             // Animação do percentual
             const resultCircle = document.getElementById('result-circle');
             resultCircle.style.background = `conic-gradient(var(--cor-resultado) ${percentage}%, #e0e0e0 ${percentage}%)`;
-            
             let currentPercent = 0;
             const percentElement = document.getElementById('result-percent');
             const interval = setInterval(() => {
@@ -1443,14 +1418,12 @@
                     percentElement.textContent = `${currentPercent}%`;
                 }
             }, 20);
-            
             // Gera feedback detalhado
             let feedback = '<h4 style="margin:25px 0 15px;text-align:center;color:#2c3e50;">Detalhes das respostas:</h4>';
             quizQuestions[currentDifficulty].forEach((question, index) => {
                 const isCorrect = userAnswers[index] === question.answer;
                 const userAnswer = question.options[userAnswers[index]];
                 const correctAnswer = question.options[question.answer];
-                
                 feedback += `
                     <div class="feedback-item">
                         <div class="feedback-question">
@@ -1463,20 +1436,16 @@
                     </div>
                 `;
             });
-            
             document.getElementById('feedback').innerHTML = feedback;
-            
             document.getElementById('quiz-result').style.display = 'block';
             document.getElementById('quiz-result').scrollIntoView({ behavior: 'smooth' });
         }
-
         function restartQuiz() {
             document.getElementById('quiz-result').style.display = 'none';
             document.querySelector('.difficulty-buttons').style.display = 'flex';
             document.getElementById(`${currentDifficulty}-quiz`).style.display = 'none';
             currentDifficulty = '';
         }
-
         // Funções para as etapas
         function toggleEtapa(num) {
             const etapa = document.getElementById(`etapa-${num}`);
@@ -1494,13 +1463,11 @@
                 updateProgress();
             }
         }
-
         function showEtapa(num) {
             document.querySelectorAll('.etapa').forEach(etapa => {
                 etapa.style.display = 'none';
             });
             document.getElementById('quiz-section').style.display = 'none';
-
             const etapa = document.getElementById(`etapa-${num}`);
             etapa.style.display = 'block';
             const content = etapa.querySelector('.content');
@@ -1508,10 +1475,8 @@
             etapa.querySelector('.toggle-icon').classList.remove('fa-chevron-down');
             etapa.querySelector('.toggle-icon').classList.add('fa-chevron-up');
             etapa.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
             updateProgress();
         }
-
         function showAll() {
             document.querySelectorAll('.etapa').forEach(etapa => {
                 etapa.style.display = 'block';
@@ -1521,24 +1486,19 @@
                 etapa.querySelector('.toggle-icon').classList.add('fa-chevron-up');
             });
             document.getElementById('quiz-section').style.display = 'none';
-
             updateProgress();
         }
-
         function updateProgress() {
             const totalSteps = document.querySelectorAll('.step').length;
             let visibleSteps = 0;
-
             document.querySelectorAll('.step').forEach(step => {
                 if (step.offsetParent !== null) {
                     visibleSteps++;
                 }
             });
-
             const progress = (visibleSteps / totalSteps) * 100;
             document.getElementById('progress').style.width = `${progress}%`;
         }
-
         // Inicialização
         document.addEventListener('DOMContentLoaded', function() {
             // Configurar clique no cabeçalho principal
@@ -1558,7 +1518,6 @@
                 }
                 updateProgress();
             });
-
             // Expandir tudo inicialmente
             showAll();
         });
